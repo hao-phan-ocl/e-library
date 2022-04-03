@@ -23,9 +23,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/book/:bookId" element={<BookInfo />} />
           <Route path="/author/:authorName" element={<AuthorInfo />} />
-          <Route element={<PrivateRoutes />}>
+          {/* <Route element={<PrivateRoutes />}>
             <Route path="/book-add" element={<BookAdd />} />
-          </Route>
+          </Route> */}
+          <Route path="/book-add" element={<BookAdd />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

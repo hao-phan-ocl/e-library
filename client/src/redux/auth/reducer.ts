@@ -1,14 +1,22 @@
 import { User } from '../../types'
-import { AuthActions, LOGIN_SUCCESSFUL, LOGGED_OUT } from './actions'
+import {
+  AuthActions,
+  LOGIN_SUCCESSFUL,
+  LOGGED_OUT,
+  BOOKLISTS_UPDATED_SUCCESSFULLY,
+  BOOKLISTS_UPDATED_FAILED,
+} from './actions'
 
 export type InitialState = {
   isAuthenticated: boolean
   user: User | null
+  error: Error | null
 }
 
 const initialState: InitialState = {
   isAuthenticated: false,
   user: null,
+  error: null,
 }
 
 export default function authReducer(
@@ -28,6 +36,18 @@ export default function authReducer(
         ...state,
         isAuthenticated: false,
         user: null,
+      }
+
+    case BOOKLISTS_UPDATED_SUCCESSFULLY:
+      return {
+        ...state,
+        user: action.payload,
+      }
+
+    case BOOKLISTS_UPDATED_FAILED:
+      return {
+        ...state,
+        error: action.payload,
       }
 
     default:

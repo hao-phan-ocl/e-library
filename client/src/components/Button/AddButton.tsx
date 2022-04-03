@@ -4,10 +4,11 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Book } from '../../types'
-import { addFavorite, removeFavorite } from '../../redux/favorite/actions'
+import { addFavorite, removeFavorite } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
 import { openModal } from '../../redux/modal/actions'
 import LoginModal from '../LoginModal/LoginModal'
+import { useEffect } from 'react'
 
 type AddButtonProps = {
   book?: Book
@@ -15,17 +16,18 @@ type AddButtonProps = {
 
 export default function AddButton({ book }: AddButtonProps) {
   const dispatch = useDispatch()
-  const favBooks = useSelector((state: RootState) => state.favBooks.favBooks)
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
+
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
   )
 
-  const added = favBooks.find((elem) => elem._id === book?._id)
+  const added = user?.bookLists.find((elem) => elem === book?._id)
 
   function handleOnClick() {
-    if (book) {
-      if (added) dispatch(removeFavorite(book))
-      else dispatch(addFavorite(book))
+    if (book && user) {
+      if (added) {
+        dispatch(removeFavorite(user._id, book._id))
+      } else dispatch(addFavorite(user?._id, book._id))
     }
   }
 

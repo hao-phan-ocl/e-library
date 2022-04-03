@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   Container,
@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import Nav from '../components/Nav/Nav'
 import { logout } from '../redux/auth/actions'
 import BackButton from '../components/Button/BackButton'
+import { RootState } from '../redux/rootReducer'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -53,10 +54,11 @@ function a11yProps(index: number) {
 }
 
 export default function Profile() {
-  const [value, setValue] = useState(0)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const user = useSelector((state: RootState) => state.auth.user)
 
+  const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
@@ -86,7 +88,10 @@ export default function Profile() {
             </Box>
             <TabPanel value={value} index={0}>
               <Stack>
-                <Typography>Profile </Typography>
+                <Typography variant="h5">Profile</Typography>
+                <Typography variant="h6">{user?.firstName}</Typography>
+                <Typography variant="h6">{user?.lastName}</Typography>
+                <Typography variant="h6">{user?.email}</Typography>
               </Stack>
             </TabPanel>
             <TabPanel value={value} index={1}>

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import { Book, User } from '../types'
+import { User } from '../types'
 import rootReducer, { RootState } from './rootReducer'
 
 // Check current user
@@ -12,17 +12,11 @@ if (localStorage.getItem('current_user')) {
   currentUser = JSON.parse(localStorage.getItem('current_user') || '')
 } else currentUser = null
 
-// Check favorite books
-let storedFavBooks: Book[]
-
-if (localStorage.getItem('favBooks')) {
-  storedFavBooks = JSON.parse(localStorage.getItem('favBooks') || '')
-} else storedFavBooks = []
-
 const initialState: RootState = {
   auth: {
     isAuthenticated: currentUser ? true : false,
     user: currentUser,
+    error: null,
   },
   book: {
     loading: true,
@@ -30,9 +24,6 @@ const initialState: RootState = {
   books: {
     books: [],
     loading: true,
-  },
-  favBooks: {
-    favBooks: storedFavBooks ? storedFavBooks : [],
   },
   modal: {
     state: false,
@@ -46,9 +37,9 @@ const store = createStore(
 )
 
 store.subscribe(() => {
-  // Favorite books
-  const favoriteState = store.getState().favBooks.favBooks
-  localStorage.setItem('favBooks', JSON.stringify(favoriteState))
+  // User
+  const user = store.getState().auth.user
+  localStorage.setItem('current_user', JSON.stringify(user))
 })
 
 export default store

@@ -8,7 +8,7 @@ const initialState = {
   state: false,
 }
 
-export function modalReducer(
+export default function modalReducer(
   state = initialState,
   action: SetModalAction
 ): InitialState {

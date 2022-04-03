@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import GoogleLoginButton from '../Button/GoogleLoginButton'
 
 export default function LoginTable() {

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,7 +11,9 @@ export default function Login() {
   const auth = useSelector((state: RootState) => state.auth.isAuthenticated)
   const navigate = useNavigate()
 
-  if (auth) navigate('/')
+  useEffect(() => {
+    if (auth) navigate('/')
+  }, [auth, navigate])
 
   return (
     <Box

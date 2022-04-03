@@ -22,8 +22,8 @@ import { RootState } from '../../redux/rootReducer'
 export default function ProfileMenu() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const favBooks = useSelector((state: RootState) => state.favBooks.favBooks)
-  console.log(favBooks)
+  const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -31,9 +31,14 @@ export default function ProfileMenu() {
     setAnchorEl(null)
   }
 
+  function handleFavoriteClick() {
+    navigate('/favorites')
+  }
+
   function handleLogout() {
     dispatch(logout())
     localStorage.clear()
+    navigate('/')
   }
 
   function handleInfoClick(event: React.MouseEvent<HTMLElement>) {
@@ -47,7 +52,7 @@ export default function ProfileMenu() {
   return (
     <Stack position="relative">
       <IconButton color="secondary" title="Profile" onClick={handleInfoClick}>
-        <Badge badgeContent={favBooks.length} variant="dot" color="primary">
+        <Badge badgeContent={favBooks?.length} variant="dot" color="primary">
           <PersonIcon fontSize="medium" />
         </Badge>
       </IconButton>
@@ -59,13 +64,16 @@ export default function ProfileMenu() {
           <Typography variant="h6">Profile</Typography>
         </MenuItem>
 
-        <MenuItem>
+        <MenuItem onClick={handleFavoriteClick}>
           <ListItemIcon>
-            <Badge badgeContent={favBooks.length} variant="dot" color="primary">
+            <Badge
+              badgeContent={favBooks?.length}
+              variant="dot"
+              color="primary"
+            >
               <BookMarkIcon fontSize="small" />
             </Badge>
           </ListItemIcon>
-
           <Typography variant="h6">My Lists</Typography>
         </MenuItem>
 

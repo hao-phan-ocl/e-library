@@ -23,14 +23,14 @@ export function fetchBooks() {
   }
 }
 
-export function fetchBooksSuccess(books: Book[]): FetchBooksSuccessType {
+function fetchBooksSuccess(books: Book[]): FetchBooksSuccessType {
   return {
     type: FETCH_BOOKS_SUCCESSFUL,
     payload: books,
   }
 }
 
-export function fetchBooksFail(err: Error): FetchBooksFailType {
+function fetchBooksFail(err: Error): FetchBooksFailType {
   return {
     type: FETCH_BOOKS_FAIL,
     payload: err,
