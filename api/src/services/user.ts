@@ -82,10 +82,7 @@ async function findOrCreate(parsedToken: any) {
     email,
   } = parsedToken.payload
 
-  const foundUser = await User.findOne({ email: email }).populate(
-    'bookLists',
-    'title'
-  )
+  const foundUser = await User.findOne({ email: email })
 
   if (!foundUser) {
     return await User.create({
