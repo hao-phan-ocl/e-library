@@ -7,7 +7,7 @@ import { Book } from '../../types'
 import { addFavorite, removeFavorite } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
 import { openDialog } from '../../redux/dialog/actions'
-import LoginDialog from '../LoginDialog/LoginDialog'
+import LoginDialog from '../Dialog/LoginDialog'
 
 type AddButtonProps = {
   book?: Book

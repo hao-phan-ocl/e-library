@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useDispatch } from 'react-redux'
 
-import DeleteUserDialog from '../DeleteUserDialog/DeleteUserDialog'
+import DeleteUserDialog from '../Dialog/DeleteUserDialog'
 import { openDialog } from '../../redux/dialog/actions'
 
 export default function DeleteUserButton() {
