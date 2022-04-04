@@ -82,7 +82,7 @@ async function findOrCreate(parsedToken: any) {
     email,
   } = parsedToken.payload
 
-  const foundUser = await User.findOne({ email: email })
+  const foundUser = await User.findOne({ email: email }).populate('bookLists')
 
   if (!foundUser) {
     return await User.create({
@@ -103,19 +103,24 @@ async function addBook(userId: string, bookId: string) {
   if (!foundUser) throw new NotFoundError('User not found')
   if (!foundBook) throw new NotFoundError('Book not found')
 
-  const existed = await User.exists({ bookLists: foundBook._id })
+  const existed = await User.exists({
+    userId: userId,
+    bookLists: foundBook._id,
+  })
 
   if (existed) {
     throw new InternalServerError('Book already added')
   }
 
-  foundUser.bookLists?.push(foundBook._id)
-  foundBook.readers?.push(foundUser._id)
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { $push: { bookLists: bookId } },
+    { new: true }
+  ).populate('bookLists')
 
-  foundUser.save()
-  foundBook.save()
+  await Book.findByIdAndUpdate(bookId, { $push: { readers: userId } })
 
-  return foundUser
+  return updatedUser
 }
 
 // Remove from bookList
@@ -130,7 +135,7 @@ async function removeBook(userId: string, bookId: string) {
     userId,
     { $pull: { bookLists: bookId } },
     { new: true }
-  )
+  ).populate('bookLists')
 
   await Book.findByIdAndUpdate(bookId, { $pull: { readers: userId } })
 

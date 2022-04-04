@@ -23,7 +23,7 @@ router.put('/id/:userId', authRequired, updateUser)
 router.put('/add-books', addBook)
 router.put('/delete-books', removeBook)
 
-router.delete('/:userId', authRequired, deleteUser)
+router.delete('/delete/:userId', authRequired, deleteUser)
 
 router.post('/register', createUser)
 router.post('/login', loginUser)
