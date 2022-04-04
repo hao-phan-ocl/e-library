@@ -32,6 +32,7 @@
     "lusca": "^1.7.0",
     "mongodb-memory-server": "^6.3.1",
     "mongoose": "^5.11.15",
+    "mongoose-type-email": "^1.1.2",
     "passport": "^0.4.1",
     "passport-google-id-token": "^0.4.7",
     "passport-jwt": "^4.0.0",

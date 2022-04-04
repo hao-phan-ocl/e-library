@@ -22,6 +22,7 @@ async function create(user: UserDocument) {
   // user.password = await bcrypt.hash(user.password, salt)
 
   const existedEmail = await User.findOne({ email: user.email })
+
   if (existedEmail) throw new InternalServerError('Email existed')
 
   return await user.save()

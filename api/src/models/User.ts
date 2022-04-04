@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
+import Email from 'mongoose-type-email'
 
 export type UserDocument = Document & {
   // username: string
@@ -27,10 +28,10 @@ export const userSchema = new Schema(
       required: true,
     },
     email: {
-      type: String,
+      type: Email,
+      correctTld: true,
       unique: true,
       required: true,
-      lowercase: true,
     },
     bookLists: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
   },
