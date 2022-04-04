@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
-  Button,
   Container,
   Paper,
   Stack,
@@ -11,12 +9,12 @@ import {
   Typography,
   Box,
 } from '@mui/material'
-import LogoutIcon from '@mui/icons-material/Logout'
 
 import Nav from '../components/Nav/Nav'
-import { logout } from '../redux/auth/actions'
 import BackButton from '../components/Button/BackButton'
 import { RootState } from '../redux/rootReducer'
+import DeleteUserButton from '../components/Button/DeleteUserButton'
+import LogoutButton from '../components/Button/LogoutButton'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -54,19 +52,11 @@ function a11yProps(index: number) {
 }
 
 export default function Profile() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
   const user = useSelector((state: RootState) => state.auth.user)
 
   const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
-  }
-
-  function handleLogout() {
-    dispatch(logout())
-    localStorage.clear()
-    navigate('/')
   }
 
   return (
@@ -95,16 +85,15 @@ export default function Profile() {
               </Stack>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Stack spacing={2} justifyContent="flex-start">
-                <Typography>Log out</Typography>
-                <Button
-                  variant="outlined"
-                  startIcon={<LogoutIcon />}
-                  sx={{ maxWidth: '150px' }}
-                  onClick={handleLogout}
-                >
-                  Log me out
-                </Button>
+              <Stack spacing={4} alignItems="flex-start">
+                <Stack spacing={1}>
+                  <Typography fontWeight={'800'}>Log out</Typography>
+                  <LogoutButton />
+                </Stack>
+                <Stack spacing={1}>
+                  <Typography fontWeight={'800'}>Remove account</Typography>
+                  <DeleteUserButton />
+                </Stack>
               </Stack>
             </TabPanel>
           </Box>

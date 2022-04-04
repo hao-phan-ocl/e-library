@@ -5,7 +5,7 @@ export type User = {
   firstName: string
   lastName: string
   email: string
-  bookLists: string[] | []
+  bookLists: Book[]
 }
 
 export type Book = {
@@ -16,7 +16,7 @@ export type Book = {
   categories: string[]
   language: string
   publicationYear: number
-  image?: string
+  image: string
   readers?: string[]
 }
 

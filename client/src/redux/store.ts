@@ -7,7 +7,6 @@ import rootReducer, { RootState } from './rootReducer'
 
 // Check current user
 let currentUser: User | null
-
 if (localStorage.getItem('current_user')) {
   currentUser = JSON.parse(localStorage.getItem('current_user') || '')
 } else currentUser = null
@@ -25,7 +24,7 @@ const initialState: RootState = {
     books: [],
     loading: true,
   },
-  modal: {
+  dialog: {
     state: false,
   },
 }
@@ -39,6 +38,7 @@ const store = createStore(
 store.subscribe(() => {
   // User
   const user = store.getState().auth.user
+
   localStorage.setItem('current_user', JSON.stringify(user))
 })
 

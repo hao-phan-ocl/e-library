@@ -52,7 +52,12 @@ export default function ProfileMenu() {
   return (
     <Stack position="relative">
       <IconButton color="secondary" title="Profile" onClick={handleInfoClick}>
-        <Badge badgeContent={favBooks?.length} variant="dot" color="primary">
+        <Badge
+          badgeContent={favBooks?.length}
+          overlap="circular"
+          variant="dot"
+          color="primary"
+        >
           <PersonIcon fontSize="medium" />
         </Badge>
       </IconButton>
@@ -69,6 +74,7 @@ export default function ProfileMenu() {
             <Badge
               badgeContent={favBooks?.length}
               variant="dot"
+              overlap="circular"
               color="primary"
             >
               <BookMarkIcon fontSize="small" />

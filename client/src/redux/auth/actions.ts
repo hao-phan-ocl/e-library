@@ -4,15 +4,17 @@ import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
 import { User } from '../../types'
 
-export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL'
+export const LOGGED_IN = 'LOGGED_IN'
 export const LOGGED_OUT = 'LOGGED_OUT'
 export const BOOKLISTS_UPDATED_SUCCESSFULLY = 'BOOKLISTS_UPDATED_SUCCESSFULLY'
 export const BOOKLISTS_UPDATED_FAILED = 'BOOKLISTS_UPDATED_FAILED'
+export const USER_DELETED_SUCCESSFULLY = 'USER_DELETED_SUCCESSFULLY'
+export const USER_DELETE_FAILED = 'USER_DELETE_FAILED'
 
 // LOGGIN
 export function loginSuccess(user: User): LoginSuccessType {
   return {
-    type: LOGIN_SUCCESSFUL,
+    type: LOGGED_IN,
     payload: user,
   }
 }
@@ -32,7 +34,7 @@ export function addFavorite(userId: string, bookId: string) {
         userId: userId,
         bookId: bookId,
       })
-      console.log(res.data)
+
       dispatch(updateFavSuccess(res.data))
     } catch (error) {
       dispatch(updateFavFail(error as Error))
@@ -48,6 +50,7 @@ export function removeFavorite(userId: string, bookId: string) {
         userId: userId,
         bookId: bookId,
       })
+      console.log(res.data)
       dispatch(updateFavSuccess(res.data))
     } catch (error) {
       dispatch(updateFavFail(error as Error))
@@ -55,10 +58,24 @@ export function removeFavorite(userId: string, bookId: string) {
   }
 }
 
-function updateFavSuccess(user: User): FavoriteSuccessType {
+// DELETE
+export function deleteUser(userId: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const res = await instance.delete(request('users', 'delete', userId))
+      if (res.status === 204) {
+        dispatch(deleteSuccess())
+      }
+    } catch (error) {
+      dispatch(deleteFail(error as Error))
+    }
+  }
+}
+
+function updateFavSuccess(updatedUser: User): FavoriteSuccessType {
   return {
     type: BOOKLISTS_UPDATED_SUCCESSFULLY,
-    payload: user,
+    payload: updatedUser,
   }
 }
 
@@ -69,8 +86,21 @@ function updateFavFail(error: Error): FavoriteFailType {
   }
 }
 
+function deleteSuccess(): DeleteSuccessType {
+  return {
+    type: USER_DELETED_SUCCESSFULLY,
+  }
+}
+
+function deleteFail(error: Error): DeleteFailType {
+  return {
+    type: USER_DELETE_FAILED,
+    payload: error,
+  }
+}
+
 type LoginSuccessType = {
-  type: typeof LOGIN_SUCCESSFUL
+  type: typeof LOGGED_IN
   payload: User
 }
 
@@ -88,8 +118,19 @@ type FavoriteFailType = {
   payload: Error
 }
 
+type DeleteSuccessType = {
+  type: typeof USER_DELETED_SUCCESSFULLY
+}
+
+type DeleteFailType = {
+  type: typeof USER_DELETE_FAILED
+  payload: Error
+}
+
 export type AuthActions =
   | ReturnType<typeof loginSuccess>
   | ReturnType<typeof logout>
   | ReturnType<typeof updateFavSuccess>
   | ReturnType<typeof updateFavFail>
+  | ReturnType<typeof deleteSuccess>
+  | ReturnType<typeof deleteFail>

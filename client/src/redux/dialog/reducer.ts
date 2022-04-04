@@ -1,4 +1,4 @@
-import { OPEN_MODAL, SetModalAction } from './actions'
+import { OPEN_DIALOG, SetDialogAction } from './actions'
 
 type InitialState = {
   state: boolean
@@ -8,12 +8,12 @@ const initialState = {
   state: false,
 }
 
-export default function modalReducer(
+export default function dialogReducer(
   state = initialState,
-  action: SetModalAction
+  action: SetDialogAction
 ): InitialState {
   switch (action.type) {
-    case OPEN_MODAL:
+    case OPEN_DIALOG:
       return {
         ...state,
         state: action.payload,

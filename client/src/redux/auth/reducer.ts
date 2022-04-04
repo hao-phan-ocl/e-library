@@ -1,10 +1,12 @@
 import { User } from '../../types'
 import {
   AuthActions,
-  LOGIN_SUCCESSFUL,
+  LOGGED_IN,
   LOGGED_OUT,
   BOOKLISTS_UPDATED_SUCCESSFULLY,
   BOOKLISTS_UPDATED_FAILED,
+  USER_DELETED_SUCCESSFULLY,
+  USER_DELETE_FAILED,
 } from './actions'
 
 export type InitialState = {
@@ -24,7 +26,7 @@ export default function authReducer(
   action: AuthActions
 ): InitialState {
   switch (action.type) {
-    case LOGIN_SUCCESSFUL:
+    case LOGGED_IN:
       return {
         ...state,
         isAuthenticated: true,
@@ -45,6 +47,19 @@ export default function authReducer(
       }
 
     case BOOKLISTS_UPDATED_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+      }
+
+    case USER_DELETED_SUCCESSFULLY:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      }
+
+    case USER_DELETE_FAILED:
       return {
         ...state,
         error: action.payload,

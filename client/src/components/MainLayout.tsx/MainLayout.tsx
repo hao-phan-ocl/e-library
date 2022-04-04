@@ -3,10 +3,10 @@ import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 
 import { Book, Author } from '../../types'
-import AddButton from '../Button/AddButton'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
+import AddButton from '../Button/AddButton'
 
 type MainLayoutProps = {
   books: Book[]
@@ -37,7 +37,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
       <Stack spacing={1}>
         {books.map((book) => (
           <Item
-            key={book.title}
+            key={book._id}
             sx={{
               ':hover': {
                 boxShadow: '0px 0px 4px 2px #49AFD0',

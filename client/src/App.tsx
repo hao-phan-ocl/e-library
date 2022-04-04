@@ -19,14 +19,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/favorites" element={<Favorite />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/book/:bookId" element={<BookInfo />} />
           <Route path="/author/:authorName" element={<AuthorInfo />} />
-          {/* <Route element={<PrivateRoutes />}>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<Favorite />} />
             <Route path="/book-add" element={<BookAdd />} />
-          </Route> */}
-          <Route path="/book-add" element={<BookAdd />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

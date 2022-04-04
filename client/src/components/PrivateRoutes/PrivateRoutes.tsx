@@ -8,5 +8,5 @@ export default function PrivateRoutes() {
     (state: RootState) => state.auth.isAuthenticated
   )
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />
 }

@@ -6,9 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Book } from '../../types'
 import { addFavorite, removeFavorite } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
-import { openModal } from '../../redux/modal/actions'
-import LoginModal from '../LoginModal/LoginModal'
-import { useEffect } from 'react'
+import { openDialog } from '../../redux/dialog/actions'
+import LoginDialog from '../LoginDialog/LoginDialog'
 
 type AddButtonProps = {
   book?: Book
@@ -21,18 +20,20 @@ export default function AddButton({ book }: AddButtonProps) {
     (state: RootState) => state.auth
   )
 
-  const added = user?.bookLists.find((elem) => elem === book?._id)
+  const added = user?.bookLists.some((elem) => elem._id === book?._id)
 
   function handleOnClick() {
     if (book && user) {
       if (added) {
         dispatch(removeFavorite(user._id, book._id))
-      } else dispatch(addFavorite(user?._id, book._id))
+      } else {
+        dispatch(addFavorite(user?._id, book._id))
+      }
     }
   }
 
-  function handleModal() {
-    dispatch(openModal(true))
+  function handleDialog() {
+    dispatch(openDialog(true))
   }
 
   return (
@@ -40,11 +41,11 @@ export default function AddButton({ book }: AddButtonProps) {
       <IconButton
         color={'primary'}
         aria-label="add-book"
-        onClick={isAuthenticated ? handleOnClick : handleModal}
+        onClick={isAuthenticated ? handleOnClick : handleDialog}
       >
         {added ? <BookmarkIcon /> : <BookmarkBorderIcon />}
       </IconButton>
-      <LoginModal />
+      <LoginDialog />
     </>
   )
 }

@@ -15,7 +15,6 @@ import ProfileMenu from './ProfileMenu'
 
 export default function Nav() {
   const navigate = useNavigate()
-  const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   )

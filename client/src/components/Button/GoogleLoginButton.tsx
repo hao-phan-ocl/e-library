@@ -28,7 +28,7 @@ export default function GoogleLoginButton() {
 
     if (res.status === 200) {
       const { user, token } = res.data
-      console.log(res.data)
+
       localStorage.setItem('access_token', token)
       localStorage.setItem('current_user', JSON.stringify(user))
       dispatch(loginSuccess(user))
