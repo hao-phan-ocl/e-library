@@ -52,7 +52,7 @@ async function findAll() {
 
 // Find single user
 async function findById(userId: string) {
-  const foundUser = await User.findById(userId).populate('bookLists', 'title')
+  const foundUser = await User.findById(userId).populate('bookLists')
 
   if (!foundUser) {
     throw new NotFoundError('User not found')

@@ -69,7 +69,7 @@ export async function googleLogin(
   }
 }
 
-// PUT /users/:userId
+// PUT /users
 export async function updateUser(
   req: Request,
   res: Response,
@@ -77,8 +77,8 @@ export async function updateUser(
 ) {
   try {
     const update = req.body
-    const userId = req.params.userId
-    const updatedUser = await UserService.updateUser(userId, update)
+    const user = req.user as UserDocument
+    const updatedUser = await UserService.updateUser(user._id, update)
     res.json(updatedUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -123,14 +123,15 @@ export async function removeBook(
   }
 }
 
-// DELETE /users/:userId
+// DELETE /users
 export async function deleteUser(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    await UserService.deleteUser(req.params.userId)
+    const user = req.user as UserDocument
+    await UserService.deleteUser(user._id)
     res.status(204).end()
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -178,8 +179,8 @@ export async function getProfile(
   next: NextFunction
 ) {
   try {
-    const profile = req.user as UserDocument
-    res.json(profile)
+    const user = req.user as UserDocument
+    res.json(await UserService.findById(user._id))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

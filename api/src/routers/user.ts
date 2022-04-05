@@ -21,11 +21,11 @@ router.get('/all', findAll)
 router.get('/id/:userId', authRequired, findById)
 router.get('/profile', authRequired, getProfile)
 
-router.put('/id/:userId', authRequired, updateUser)
-router.put('/add-books', addBook)
-router.put('/delete-books', removeBook)
+router.put('/update', authRequired, updateUser)
+router.put('/add-favorite', authRequired, addBook)
+router.put('/delete-favorite', authRequired, removeBook)
 
-router.delete('/delete/:userId', deleteUser)
+router.delete('/delete', authRequired, deleteUser)
 
 router.post('/register', createUser)
 router.post('/login', loginUser)
