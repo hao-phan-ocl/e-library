@@ -7,8 +7,8 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import Nav from '../components/Nav/Nav'
 import { fetchBook } from '../redux/fetchBook/actions'
 import { RootState } from '../redux/rootReducer'
-import BackButton from '../components/Button/BackButton'
-import AddButton from '../components/Button/AddButton'
+import BackButton from '../components/Button/BackBtn'
+import AddBtn from '../components/Button/AddBtn'
 
 export default function BookInfo() {
   const { bookId } = useParams()
@@ -24,17 +24,11 @@ export default function BookInfo() {
   return (
     <>
       <Nav />
-
       <Container maxWidth="md">
         <BackButton text={book?.title || 'Book Detail'} />
-        <Stack
-          mt={5}
-          position="relative"
-          direction="row"
-          sx={{ textAlign: 'justify' }}
-        >
+        <Stack mt={5} position="relative" direction="row" textAlign="justify">
           <Box position="absolute" right={0}>
-            <AddButton book={book} />
+            <AddBtn book={book} />
           </Box>
           <Stack spacing={1}>
             <img
@@ -52,7 +46,7 @@ export default function BookInfo() {
               </Button>
             </Stack>
           </Stack>
-          <Stack pl={2} pr={1}>
+          <Stack pl={2} pr={1} alignItems="flex-start">
             <Typography gutterBottom variant="h5">
               {book?.title}
             </Typography>

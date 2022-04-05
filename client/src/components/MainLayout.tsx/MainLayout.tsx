@@ -6,7 +6,7 @@ import { Book, Author } from '../../types'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
-import AddButton from '../Button/AddButton'
+import AddBtn from '../Button/AddBtn'
 
 type MainLayoutProps = {
   books: Book[]
@@ -47,7 +47,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
             <Box sx={{ display: 'flex', gap: '10px', padding: '0 10px' }}>
               {auth && (
                 <Box position="absolute" right={5}>
-                  <AddButton book={book} />
+                  <AddBtn book={book} />
                 </Box>
               )}
               <img
@@ -63,7 +63,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
                   width: '100%',
                 }}
               >
-                <Box>
+                <Stack alignItems="flex-start">
                   <Typography
                     gutterBottom
                     variant="h5"
@@ -86,7 +86,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
                       {author.name}
                     </Typography>
                   ))}
-                </Box>
+                </Stack>
                 <Box
                   sx={{
                     display: 'flex',

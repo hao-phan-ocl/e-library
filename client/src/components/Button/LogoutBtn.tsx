@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { logout } from '../../redux/auth/actions'
 
-export default function LogoutButton() {
+export default function LogoutBtn() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -17,6 +17,7 @@ export default function LogoutButton() {
   return (
     <Button
       variant="outlined"
+      color="secondary"
       startIcon={<LogoutIcon />}
       onClick={handleLogout}
     >

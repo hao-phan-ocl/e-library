@@ -2,7 +2,7 @@ import { Container, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useSelector } from 'react-redux'
 
-import BackButton from '../components/Button/BackButton'
+import BackBtn from '../components/Button/BackBtn'
 import MainLayout from '../components/MainLayout.tsx/MainLayout'
 import Nav from '../components/Nav/Nav'
 import { RootState } from '../redux/rootReducer'
@@ -14,7 +14,7 @@ export default function Favorite() {
     <>
       <Nav />
       <Container maxWidth="md">
-        <BackButton text={'My Favorites'} />
+        <BackBtn text={'My Favorites'} />
         {favBooks?.length ? (
           <MainLayout books={favBooks} />
         ) : (

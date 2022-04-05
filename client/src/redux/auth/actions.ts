@@ -3,6 +3,7 @@ import { Dispatch } from 'redux'
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
 import { User } from '../../types'
+import { RootState } from '../rootReducer'
 
 export const LOGGED_IN = 'LOGGED_IN'
 export const LOGIN_FAILED = 'LOGIN_FAILED'
@@ -11,6 +12,8 @@ export const BOOKLISTS_UPDATED_SUCCESSFULLY = 'BOOKLISTS_UPDATED_SUCCESSFULLY'
 export const BOOKLISTS_UPDATED_FAILED = 'BOOKLISTS_UPDATED_FAILED'
 export const USER_DELETED_SUCCESSFULLY = 'USER_DELETED_SUCCESSFULLY'
 export const USER_DELETE_FAILED = 'USER_DELETE_FAILED'
+
+type GetState = () => RootState
 
 // LOGGIN
 export function loginSuccess(user: User): LoginSuccessType {
@@ -35,21 +38,15 @@ export function logout(): Logout {
 }
 
 // GET PROFILE
-// export function getProfile() {
-//   return async (dispatch: Dispatch) => {
-//     try {
-//       const res = await instance.get<User>(request('users', 'profile'))
-//       dispatch(loginSuccess(res.data))
-//     } catch (error) {
-//       dispatch(loginFail(error as Error))
-//     }
-//   }
-// }
 export function getProfile() {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
     try {
-      const res = await instance.get<User>(request('users', 'profile'))
-      dispatch(loginSuccess(res.data))
+      const hasAccessToken = getState().auth.isAuthenticated
+
+      if (hasAccessToken) {
+        const res = await instance.get<User>(request('users', 'profile'))
+        dispatch(loginSuccess(res.data))
+      }
     } catch (error) {
       dispatch(loginFail(error as Error))
     }
@@ -60,7 +57,7 @@ export function getProfile() {
 export function addFavorite(userId: string, bookId: string) {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await instance.put<User>(request('users', 'add-books'), {
+      const res = await instance.put<User>(request('users', 'add-favorite'), {
         userId: userId,
         bookId: bookId,
       })
@@ -76,10 +73,13 @@ export function addFavorite(userId: string, bookId: string) {
 export function removeFavorite(userId: string, bookId: string) {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await instance.put<User>(request('users', 'delete-books'), {
-        userId: userId,
-        bookId: bookId,
-      })
+      const res = await instance.put<User>(
+        request('users', 'delete-favorite'),
+        {
+          userId: userId,
+          bookId: bookId,
+        }
+      )
       console.log(res.data)
       dispatch(updateFavSuccess(res.data))
     } catch (error) {

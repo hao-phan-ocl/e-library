@@ -11,7 +11,7 @@ type GoogleLoginResponse = {
   token: string
 }
 
-export default function GoogleLoginButton() {
+export default function GoogleLoginBtn() {
   const dispatch = useDispatch()
 
   const responseGoogle = async (response: any) => {

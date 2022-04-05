@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import {
   Container,
   Paper,
@@ -11,10 +10,10 @@ import {
 } from '@mui/material'
 
 import Nav from '../components/Nav/Nav'
-import BackButton from '../components/Button/BackButton'
-import { RootState } from '../redux/rootReducer'
-import DeleteUserButton from '../components/Button/DeleteUserButton'
-import LogoutButton from '../components/Button/LogoutButton'
+import BackButton from '../components/Button/BackBtn'
+import DeleteUserButton from '../components/Button/DeleteUserBtn'
+import LogoutBtn from '../components/Button/LogoutBtn'
+import ProfileForm from '../components/Button/ProfileForm'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -52,8 +51,6 @@ function a11yProps(index: number) {
 }
 
 export default function Profile() {
-  const user = useSelector((state: RootState) => state.auth.user)
-
   const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -77,18 +74,13 @@ export default function Profile() {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Stack>
-                <Typography fontWeight={'800'}>Profile</Typography>
-                <Typography variant="h6">{user?.firstName}</Typography>
-                <Typography variant="h6">{user?.lastName}</Typography>
-                <Typography variant="h6">{user?.email}</Typography>
-              </Stack>
+              <ProfileForm />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Stack spacing={4} alignItems="flex-start">
                 <Stack spacing={1}>
                   <Typography fontWeight={'800'}>Log out</Typography>
-                  <LogoutButton />
+                  <LogoutBtn />
                 </Stack>
                 <Stack spacing={1}>
                   <Typography fontWeight={'800'}>Remove account</Typography>

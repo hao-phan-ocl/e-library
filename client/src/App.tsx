@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getProfile())
+    dispatch(getProfile()) // refetch user profile every F5
   }, [dispatch])
 
   return (

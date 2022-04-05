@@ -13,7 +13,7 @@ type AddButtonProps = {
   book?: Book
 }
 
-export default function AddButton({ book }: AddButtonProps) {
+export default function AddBtn({ book }: AddButtonProps) {
   const dispatch = useDispatch()
 
   const { user, isAuthenticated } = useSelector(
@@ -42,6 +42,7 @@ export default function AddButton({ book }: AddButtonProps) {
         color={'primary'}
         aria-label="add-book"
         onClick={isAuthenticated ? handleOnClick : handleDialog}
+        title="Favorite"
       >
         {added ? <BookmarkIcon /> : <BookmarkBorderIcon />}
       </IconButton>

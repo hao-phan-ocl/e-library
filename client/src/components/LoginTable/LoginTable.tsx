@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import GoogleLoginButton from '../Button/GoogleLoginButton'
+import GoogleLoginBtn from '../Button/GoogleLoginBtn'
 
 export default function LoginTable() {
   return (
@@ -24,7 +24,7 @@ export default function LoginTable() {
           Library
         </Typography>
       </Stack>
-      <GoogleLoginButton />
+      <GoogleLoginBtn />
     </Stack>
   )
 }

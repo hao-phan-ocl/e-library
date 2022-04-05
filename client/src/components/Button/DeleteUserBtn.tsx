@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import DeleteUserDialog from '../Dialog/DeleteUserDialog'
 import { openDialog } from '../../redux/dialog/actions'
 
-export default function DeleteUserButton() {
+export default function DeleteUserBtn() {
   const dispatch = useDispatch()
 
   function handleDialog() {

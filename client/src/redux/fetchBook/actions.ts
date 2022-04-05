@@ -14,9 +14,13 @@ type GetState = () => RootState
 export function fetchBook(bookId: string) {
   return async (dispatch: Dispatch, getState: GetState) => {
     try {
-      const res = await instance.get(request('books', 'id', bookId))
-      dispatch(fetchBookSuccess(res.data))
-      dispatch(loadingBook(false))
+      const book = getState().book.book
+
+      if (book?._id !== bookId) {
+        const res = await instance.get(request('books', 'id', bookId))
+        dispatch(fetchBookSuccess(res.data))
+        dispatch(loadingBook(false))
+      }
     } catch (error) {
       dispatch(fetchBookFail(error as Error))
     }

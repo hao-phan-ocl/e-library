@@ -6,7 +6,7 @@ type BackButtonProps = {
   text: string
 }
 
-export default function BackButton({ text }: BackButtonProps) {
+export default function BackBtn({ text }: BackButtonProps) {
   const navigate = useNavigate()
 
   return (

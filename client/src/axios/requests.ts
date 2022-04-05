@@ -3,14 +3,15 @@ type RouteTypes = 'users' | 'books' | 'authors'
 type UrlType =
   | 'all'
   | 'id'
-  | 'add-books'
-  | 'delete-books'
+  | 'add-favorite'
+  | 'delete-favorite'
   | 'title'
   | 'name'
   | 'google-login'
   | 'register'
   | 'delete'
   | 'profile'
+  | 'update'
 
 type IdType = string
 
