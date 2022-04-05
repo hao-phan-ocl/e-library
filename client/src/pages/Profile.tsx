@@ -13,7 +13,7 @@ import Nav from '../components/Nav/Nav'
 import BackButton from '../components/Button/BackBtn'
 import DeleteUserButton from '../components/Button/DeleteUserBtn'
 import LogoutBtn from '../components/Button/LogoutBtn'
-import ProfileForm from '../components/Button/ProfileForm'
+import ProfileForm from '../components/Form/ProfileForm'
 
 interface TabPanelProps {
   children?: React.ReactNode
