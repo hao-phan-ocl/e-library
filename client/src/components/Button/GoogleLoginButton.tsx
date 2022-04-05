@@ -1,6 +1,5 @@
 import GoogleLogin from 'react-google-login'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
@@ -14,7 +13,6 @@ type GoogleLoginResponse = {
 
 export default function GoogleLoginButton() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const responseGoogle = async (response: any) => {
     const tokenId = response?.tokenId
@@ -30,7 +28,6 @@ export default function GoogleLoginButton() {
       const { user, token } = res.data
 
       localStorage.setItem('access_token', token)
-      localStorage.setItem('current_user', JSON.stringify(user))
       dispatch(loginSuccess(user))
     } else {
       alert('Google login failed')

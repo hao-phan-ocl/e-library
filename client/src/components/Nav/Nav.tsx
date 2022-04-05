@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Button,
-  Container,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/material'
-import BookmarkIcon from '@mui/icons-material/Bookmark'
+import { Button, Container, Stack, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -68,15 +60,6 @@ export default function Nav() {
               Sign in
             </Typography>
           )}
-          {/* <IconButton
-            color="secondary"
-            title="Booklists"
-            onClick={() => navigate('/favorites')}
-          >
-            <Badge badgeContent={favBooks.length} color="error">
-              <BookmarkIcon fontSize="medium" />
-            </Badge>
-          </IconButton> */}
         </Stack>
       </Stack>
     </Container>

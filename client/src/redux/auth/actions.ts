@@ -5,6 +5,7 @@ import { request } from '../../axios/requests'
 import { User } from '../../types'
 
 export const LOGGED_IN = 'LOGGED_IN'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
 export const LOGGED_OUT = 'LOGGED_OUT'
 export const BOOKLISTS_UPDATED_SUCCESSFULLY = 'BOOKLISTS_UPDATED_SUCCESSFULLY'
 export const BOOKLISTS_UPDATED_FAILED = 'BOOKLISTS_UPDATED_FAILED'
@@ -19,10 +20,39 @@ export function loginSuccess(user: User): LoginSuccessType {
   }
 }
 
+export function loginFail(err: Error): LoginFailType {
+  return {
+    type: LOGIN_FAILED,
+    payload: err,
+  }
+}
+
 // LOGOUT
 export function logout(): Logout {
   return {
     type: LOGGED_OUT,
+  }
+}
+
+// GET PROFILE
+// export function getProfile() {
+//   return async (dispatch: Dispatch) => {
+//     try {
+//       const res = await instance.get<User>(request('users', 'profile'))
+//       dispatch(loginSuccess(res.data))
+//     } catch (error) {
+//       dispatch(loginFail(error as Error))
+//     }
+//   }
+// }
+export function getProfile() {
+  return async (dispatch: Dispatch) => {
+    try {
+      const res = await instance.get<User>(request('users', 'profile'))
+      dispatch(loginSuccess(res.data))
+    } catch (error) {
+      dispatch(loginFail(error as Error))
+    }
   }
 }
 
@@ -104,6 +134,11 @@ type LoginSuccessType = {
   payload: User
 }
 
+type LoginFailType = {
+  type: typeof LOGIN_FAILED
+  payload: Error
+}
+
 type Logout = {
   type: typeof LOGGED_OUT
 }
@@ -134,3 +169,4 @@ export type AuthActions =
   | ReturnType<typeof updateFavFail>
   | ReturnType<typeof deleteSuccess>
   | ReturnType<typeof deleteFail>
+  | ReturnType<typeof loginFail>

@@ -7,18 +7,18 @@ import {
   BOOKLISTS_UPDATED_FAILED,
   USER_DELETED_SUCCESSFULLY,
   USER_DELETE_FAILED,
+  LOGIN_FAILED,
 } from './actions'
 
 export type InitialState = {
   isAuthenticated: boolean
   user: User | null
-  error: Error | null
+  error?: Error
 }
 
 const initialState: InitialState = {
   isAuthenticated: false,
   user: null,
-  error: null,
 }
 
 export default function authReducer(
@@ -31,6 +31,12 @@ export default function authReducer(
         ...state,
         isAuthenticated: true,
         user: action.payload,
+      }
+
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        error: action.payload,
       }
 
     case LOGGED_OUT:

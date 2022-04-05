@@ -11,6 +11,7 @@ import {
   addBook,
   removeBook,
   googleLogin,
+  getProfile,
 } from '../controllers/user'
 
 const router = express.Router()
@@ -18,6 +19,7 @@ const authRequired = passport.authenticate('jwt', { session: false })
 
 router.get('/all', findAll)
 router.get('/id/:userId', authRequired, findById)
+router.get('/profile', authRequired, getProfile)
 
 router.put('/id/:userId', authRequired, updateUser)
 router.put('/add-books', addBook)

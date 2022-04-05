@@ -78,7 +78,7 @@ export default function Profile() {
             </Box>
             <TabPanel value={value} index={0}>
               <Stack>
-                <Typography variant="h5">Profile</Typography>
+                <Typography fontWeight={'800'}>Profile</Typography>
                 <Typography variant="h6">{user?.firstName}</Typography>
                 <Typography variant="h6">{user?.lastName}</Typography>
                 <Typography variant="h6">{user?.email}</Typography>

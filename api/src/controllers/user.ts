@@ -170,3 +170,21 @@ export async function findAll(req: Request, res: Response, next: NextFunction) {
     }
   }
 }
+
+// GET /profile
+export async function getProfile(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const profile = req.user as UserDocument
+    res.json(profile)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}

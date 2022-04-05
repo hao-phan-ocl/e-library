@@ -10,6 +10,7 @@ type UrlType =
   | 'google-login'
   | 'register'
   | 'delete'
+  | 'profile'
 
 type IdType = string
 

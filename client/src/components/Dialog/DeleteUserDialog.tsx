@@ -41,7 +41,7 @@ export default function DeleteUserDialog() {
       <DialogContent>
         <DialogContentText>
           You account will be removed permanently and you will no longer have
-          access to your booklists
+          access to your booklists.
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ padding: '0 20px 20px 20px' }}>
