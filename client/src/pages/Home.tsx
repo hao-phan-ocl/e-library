@@ -2,7 +2,6 @@ import { Container } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Nav from '../components/Nav/Nav'
 import SearchBar from '../components/SearchBar/SearchBar'
 import { fetchBooks } from '../redux/fetchBooks/actions'
 import { RootState } from '../redux/rootReducer'
@@ -17,12 +16,9 @@ export default function Home() {
   }, [dispatch])
 
   return (
-    <>
-      <Nav />
-      <Container maxWidth="md">
-        <SearchBar />
-        <MainLayout books={books} />
-      </Container>
-    </>
+    <Container maxWidth="md">
+      <SearchBar />
+      <MainLayout books={books} />
+    </Container>
   )
 }

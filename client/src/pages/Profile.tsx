@@ -9,7 +9,6 @@ import {
   Box,
 } from '@mui/material'
 
-import Nav from '../components/Nav/Nav'
 import BackButton from '../components/Button/BackBtn'
 import DeleteUserButton from '../components/Button/DeleteUserBtn'
 import LogoutBtn from '../components/Button/LogoutBtn'
@@ -57,40 +56,37 @@ export default function Profile() {
   }
 
   return (
-    <>
-      <Nav />
-      <Container maxWidth="md">
-        <BackButton text={'My Profile'} />
-        <Paper>
-          <Box sx={{ width: '100%' }} mt={3}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="profile tabs"
-              >
-                <Tab label="Profile Info" {...a11yProps(0)} />
-                <Tab label="Remove Profile" {...a11yProps(1)} />
-              </Tabs>
-            </Box>
-            <TabPanel value={value} index={0}>
-              <ProfileForm />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <Stack spacing={4} alignItems="flex-start">
-                <Stack spacing={1}>
-                  <Typography fontWeight={'800'}>Log out</Typography>
-                  <LogoutBtn />
-                </Stack>
-                <Stack spacing={1}>
-                  <Typography fontWeight={'800'}>Remove account</Typography>
-                  <DeleteUserButton />
-                </Stack>
-              </Stack>
-            </TabPanel>
+    <Container maxWidth="md">
+      <BackButton text={'My Profile'} />
+      <Paper>
+        <Box sx={{ width: '100%' }} mt={3}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="profile tabs"
+            >
+              <Tab label="Profile Info" {...a11yProps(0)} />
+              <Tab label="Remove Profile" {...a11yProps(1)} />
+            </Tabs>
           </Box>
-        </Paper>
-      </Container>
-    </>
+          <TabPanel value={value} index={0}>
+            <ProfileForm />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Stack spacing={4} alignItems="flex-start">
+              <Stack spacing={1}>
+                <Typography fontWeight={'800'}>Log out</Typography>
+                <LogoutBtn />
+              </Stack>
+              <Stack spacing={1}>
+                <Typography fontWeight={'800'}>Remove account</Typography>
+                <DeleteUserButton />
+              </Stack>
+            </Stack>
+          </TabPanel>
+        </Box>
+      </Paper>
+    </Container>
   )
 }

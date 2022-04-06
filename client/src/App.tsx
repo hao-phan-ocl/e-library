@@ -5,14 +5,15 @@ import { useEffect } from 'react'
 
 import Login from './pages/Login'
 import Home from './pages/Home'
-import BookAdd from './pages/BookAdd'
+import AddBook from './pages/AddBook'
 import PrivateRoutes from './components/PrivateRoutes/PrivateRoutes'
 import BookInfo from './pages/BookInfo'
 import AuthorInfo from './pages/AuthorInfo'
 import theme from './theme/theme'
 import Favorite from './pages/Favorite'
 import Profile from './pages/Profile'
-import { getProfile } from './redux/auth/actions'
+import getProfile from './redux/auth/actions'
+import Nav from './components/Nav/Nav'
 import './App.scss'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -33,7 +35,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/favorites" element={<Favorite />} />
-            <Route path="/book-add" element={<BookAdd />} />
+            <Route path="/book-add" element={<AddBook />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -38,7 +38,7 @@ export function logout(): Logout {
 }
 
 // GET PROFILE
-export function getProfile() {
+export default function getProfile() {
   return async (dispatch: Dispatch, getState: GetState) => {
     try {
       const hasAccessToken = getState().auth.isAuthenticated

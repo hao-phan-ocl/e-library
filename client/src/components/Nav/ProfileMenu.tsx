@@ -14,7 +14,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import BookMarkIcon from '@mui/icons-material/Bookmark'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { logout } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
@@ -31,10 +31,6 @@ export default function ProfileMenu() {
     setAnchorEl(null)
   }
 
-  function handleFavoriteClick() {
-    navigate('/favorites')
-  }
-
   function handleLogout() {
     dispatch(logout())
     localStorage.clear()
@@ -43,10 +39,6 @@ export default function ProfileMenu() {
 
   function handleInfoClick(event: React.MouseEvent<HTMLElement>) {
     setAnchorEl(event.currentTarget)
-  }
-
-  function handleAddClick() {
-    navigate('/book-add')
   }
 
   return (
@@ -62,14 +54,14 @@ export default function ProfileMenu() {
         </Badge>
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={() => navigate('/profile')}>
+        <MenuItem component={Link} to="/profile">
           <ListItemIcon>
             <SettingsOutlinedIcon fontSize="small" />
           </ListItemIcon>
           <Typography variant="h6">Profile</Typography>
         </MenuItem>
 
-        <MenuItem onClick={handleFavoriteClick}>
+        <MenuItem component={Link} to="/favorites">
           <ListItemIcon>
             <Badge
               badgeContent={favBooks?.length}
@@ -83,7 +75,7 @@ export default function ProfileMenu() {
           <Typography variant="h6">My Lists</Typography>
         </MenuItem>
 
-        <MenuItem onClick={handleAddClick}>
+        <MenuItem component={Link} to="/book-add">
           <ListItemIcon color="primary">
             <IosShareIcon fontSize="small" />
           </ListItemIcon>
