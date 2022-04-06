@@ -1,11 +1,14 @@
 import { Button } from '@mui/material'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useDispatch } from 'react-redux'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
-import DeleteUserDialog from '../Dialog/DeleteUserDialog'
 import { openDialog } from '../../redux/dialog/actions'
 
-export default function DeleteUserBtn() {
+type DeleteType = {
+  text: string
+}
+
+export default function DeleteBtn({ text }: DeleteType) {
   const dispatch = useDispatch()
 
   function handleDialog() {
@@ -20,9 +23,8 @@ export default function DeleteUserBtn() {
         startIcon={<DeleteOutlineIcon />}
         onClick={handleDialog}
       >
-        Remove my account
+        {text}
       </Button>
-      <DeleteUserDialog />
     </>
   )
 }

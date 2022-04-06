@@ -1,12 +1,12 @@
+import { Box, Paper, Stack, Tab, Tabs, Typography } from '@mui/material'
 import { useState } from 'react'
-import { Paper, Stack, Tabs, Tab, Typography, Box } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import BackBtn from '../components/Button/BackBtn'
 import DeleteBtn from '../components/Button/DeleteBtn'
-import LogoutBtn from '../components/Button/LogoutBtn'
-import ProfileForm from '../components/Form/ProfileForm'
-import DeleteUserDialog from '../components/Dialog/DeleteUserDialog'
-import Nav from '../components/Nav/Nav'
+import DeleteBookDialog from '../components/Dialog/DeleteBookDialog'
+import { RootState } from '../redux/rootReducer'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -16,9 +16,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
-
   // Remember to change <Typography> as <div> component to render other typography inside
-
   return (
     <div
       role="tabpanel"
@@ -43,40 +41,38 @@ function a11yProps(index: number) {
   }
 }
 
-export default function Profile() {
+export default function BookEdit() {
   const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
+  const { book } = useSelector((state: RootState) => state.book)
+
   return (
     <>
-      <BackBtn text={'My Profile'} />
+      <BackBtn text={'Edit Book'} />
       <Paper>
         <Box sx={{ width: '100%' }} mt={3}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs
               value={value}
               onChange={handleChange}
-              aria-label="profile tabs"
+              aria-label="book-edit tabs"
             >
-              <Tab label="Profile Info" {...a11yProps(0)} />
-              <Tab label="Remove Profile" {...a11yProps(1)} />
+              <Tab label="Edit Book" {...a11yProps(0)} />
+              <Tab label="Remove Book" {...a11yProps(1)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <ProfileForm />
+            {book?.title}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Stack spacing={4} alignItems="flex-start">
               <Stack spacing={1}>
-                <Typography fontWeight={'800'}>Log out</Typography>
-                <LogoutBtn />
-              </Stack>
-              <Stack spacing={1}>
-                <Typography fontWeight={'800'}>Remove account</Typography>
-                <DeleteBtn text="remove my account" />
-                <DeleteUserDialog />
+                <Typography fontWeight={'800'}>Remove book</Typography>
+                <DeleteBtn text={'remove this book'} />
+                <DeleteBookDialog />
               </Stack>
             </Stack>
           </TabPanel>

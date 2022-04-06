@@ -61,7 +61,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
                     gutterBottom
                     variant="h5"
                     fontSize={22}
-                    sx={{ textDecoration: 'underline', cursor: 'pointer' }}
+                    sx={{ textDecoration: 'underline' }}
                   >
                     {book.title}
                   </Typography>
@@ -74,7 +74,6 @@ export default function MainLayout({ books }: MainLayoutProps) {
                       color="primary"
                       sx={{
                         fontStyle: 'italic',
-                        cursor: 'pointer',
                       }}
                     >
                       {author.name}

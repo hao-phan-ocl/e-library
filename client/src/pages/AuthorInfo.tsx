@@ -1,3 +1,11 @@
+import { Container } from '@mui/material'
+
 export default function AuthorInfo() {
-  return <div>AuthorInfo</div>
+  return (
+    <>
+      <Container maxWidth="md">
+        <div>AuthorInfo</div>
+      </Container>
+    </>
+  )
 }

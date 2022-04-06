@@ -23,11 +23,11 @@ export default function AddBtn({ book }: AddButtonProps) {
   const added = user?.bookLists.some((elem) => elem._id === book?._id)
 
   function handleOnClick() {
-    if (book && user) {
+    if (book) {
       if (added) {
-        dispatch(removeFavorite(user._id, book._id))
+        dispatch(removeFavorite(book._id))
       } else {
-        dispatch(addFavorite(user?._id, book._id))
+        dispatch(addFavorite(book._id))
       }
     }
   }

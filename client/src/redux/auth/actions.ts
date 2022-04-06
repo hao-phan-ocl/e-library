@@ -54,11 +54,10 @@ export default function getProfile() {
 }
 
 // ADD
-export function addFavorite(userId: string, bookId: string) {
+export function addFavorite(bookId: string) {
   return async (dispatch: Dispatch) => {
     try {
       const res = await instance.put<User>(request('users', 'add-favorite'), {
-        userId: userId,
         bookId: bookId,
       })
 
@@ -70,13 +69,12 @@ export function addFavorite(userId: string, bookId: string) {
 }
 
 // REMOVE
-export function removeFavorite(userId: string, bookId: string) {
+export function removeFavorite(bookId: string) {
   return async (dispatch: Dispatch) => {
     try {
       const res = await instance.put<User>(
         request('users', 'delete-favorite'),
         {
-          userId: userId,
           bookId: bookId,
         }
       )
@@ -89,10 +87,10 @@ export function removeFavorite(userId: string, bookId: string) {
 }
 
 // DELETE
-export function deleteUser(userId: string) {
+export function deleteUser() {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await instance.delete(request('users', 'delete', userId))
+      const res = await instance.delete(request('users', 'delete'))
       if (res.status === 204) {
         dispatch(deleteSuccess())
       }

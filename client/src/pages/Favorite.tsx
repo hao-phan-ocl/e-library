@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useSelector } from 'react-redux'
 
@@ -10,7 +10,7 @@ export default function Favorite() {
   const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
 
   return (
-    <Container maxWidth="md">
+    <>
       <BackBtn text={'My Favorites'} />
       {favBooks?.length ? (
         <MainLayout books={favBooks} />
@@ -21,6 +21,6 @@ export default function Favorite() {
           </Typography>
         </Box>
       )}
-    </Container>
+    </>
   )
 }

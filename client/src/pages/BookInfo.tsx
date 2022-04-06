@@ -1,8 +1,9 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 
 import { fetchBook } from '../redux/fetchBook/actions'
 import { RootState } from '../redux/rootReducer'
@@ -13,15 +14,14 @@ export default function BookInfo() {
   const { bookId } = useParams()
   const dispatch = useDispatch()
   const { book, loading } = useSelector((state: RootState) => state.book)
-
-  console.log(book)
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
     dispatch(fetchBook(bookId as string))
   }, [dispatch, bookId])
 
   return (
-    <Container maxWidth="md">
+    <>
       <BackButton text={book?.title || 'Book Detail'} />
       <Stack mt={5} position="relative" direction="row" textAlign="justify">
         <Box position="absolute" right={0}>
@@ -29,14 +29,27 @@ export default function BookInfo() {
         </Box>
         <Stack spacing={1}>
           <img style={{ width: '220px' }} src={book?.image} alt={book?.title} />
-          <Stack direction="column" spacing={2}>
+          <Stack direction="column" spacing={0.7}>
             <Button
               color="primary"
               variant="contained"
+              size="small"
               startIcon={<FileDownloadOutlinedIcon />}
             >
               Download
             </Button>
+            {isAuthenticated && book && (
+              <Button
+                component={Link}
+                to={`/book-edit/${book._id}`}
+                size="small"
+                color="secondary"
+                variant="contained"
+                startIcon={<ModeEditOutlinedIcon />}
+              >
+                Edit
+              </Button>
+            )}
           </Stack>
         </Stack>
         <Stack pl={2} pr={1} alignItems="flex-start">
@@ -77,6 +90,6 @@ export default function BookInfo() {
           </Stack>
         </Stack>
       </Stack>
-    </Container>
+    </>
   )
 }

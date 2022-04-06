@@ -1,4 +1,3 @@
-import { Container } from '@mui/material'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -16,9 +15,9 @@ export default function Home() {
   }, [dispatch])
 
   return (
-    <Container maxWidth="md">
+    <>
       <SearchBar />
       <MainLayout books={books} />
-    </Container>
+    </>
   )
 }

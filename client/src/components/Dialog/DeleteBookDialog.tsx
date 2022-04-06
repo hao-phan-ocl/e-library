@@ -14,20 +14,21 @@ import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
 import { deleteUser } from '../../redux/auth/actions'
 
-export default function DeleteUserDialog() {
+export default function DeleteBookDialog() {
   const dispatch = useDispatch()
   const open = useSelector((state: RootState) => state.dialog.state)
-  // const userId = useSelector((state: RootState) => state.auth.user?._id)
+  const userId = useSelector((state: RootState) => state.auth.user?._id)
 
   function handleClose() {
     dispatch(openDialog(false))
   }
 
   function handleDelete() {
-    // if (userId) {
-    dispatch(deleteUser())
-    dispatch(openDialog(false))
-    // }
+    if (userId) {
+      //   dispatch(deleteUser(userId))
+      console.log('book deleted')
+      dispatch(openDialog(false))
+    }
   }
 
   return (
@@ -40,8 +41,8 @@ export default function DeleteUserDialog() {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          You account will be removed permanently and you will no longer have
-          access to your booklists.
+          This book will be removed permanently from the library data as well as
+          users' booklists.
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ padding: '0 20px 20px 20px' }}>
