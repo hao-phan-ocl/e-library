@@ -92,8 +92,9 @@ export async function updateUser(
 // PUT /users/add-books/
 export async function addBook(req: Request, res: Response, next: NextFunction) {
   try {
-    const { userId, bookId } = req.body
-    const updatedUser = await UserService.addBook(userId, bookId)
+    const { bookId } = req.body
+    const user = req.user as UserDocument
+    const updatedUser = await UserService.addBook(user?._id, bookId)
     res.json(updatedUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -111,8 +112,9 @@ export async function removeBook(
   next: NextFunction
 ) {
   try {
-    const { userId, bookId } = req.body
-    const updatedUser = await UserService.removeBook(userId, bookId)
+    const { bookId } = req.body
+    const user = req.user as UserDocument
+    const updatedUser = await UserService.removeBook(user._id, bookId)
     res.json(updatedUser)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
