@@ -12,9 +12,9 @@ import IosShareIcon from '@mui/icons-material/IosShare'
 import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import BookMarkIcon from '@mui/icons-material/Bookmark'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 import { logout } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
@@ -22,7 +22,12 @@ import { RootState } from '../../redux/rootReducer'
 export default function ProfileMenu() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
+
+  useEffect(() => {
+    setAnchorEl(null) // Optional: to close menu board when route changed
+  }, [location])
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

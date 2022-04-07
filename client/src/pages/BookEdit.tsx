@@ -1,11 +1,13 @@
 import { Box, Paper, Stack, Tab, Tabs, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import BackBtn from '../components/Button/BackBtn'
 import DeleteBtn from '../components/Button/DeleteBtn'
 import DeleteBookDialog from '../components/Dialog/DeleteBookDialog'
+import BookForm from '../components/Form/BookForm'
+import { fetchBook } from '../redux/fetchBook/actions'
 import { RootState } from '../redux/rootReducer'
 
 interface TabPanelProps {
@@ -42,16 +44,22 @@ function a11yProps(index: number) {
 }
 
 export default function BookEdit() {
+  const dispatch = useDispatch()
+  const { bookId } = useParams()
+  const { book } = useSelector((state: RootState) => state.book)
+
   const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
 
-  const { book } = useSelector((state: RootState) => state.book)
+  useEffect(() => {
+    dispatch(fetchBook(bookId as string))
+  }, [dispatch, bookId])
 
   return (
     <>
-      <BackBtn text={'Edit Book'} />
+      {book && <BackBtn text={book.title} />}
       <Paper>
         <Box sx={{ width: '100%' }} mt={3}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -65,7 +73,7 @@ export default function BookEdit() {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            {book?.title}
+            {book && <BookForm book={book} />}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Stack spacing={4} alignItems="flex-start">

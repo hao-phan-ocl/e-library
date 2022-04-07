@@ -6,7 +6,6 @@ import DeleteBtn from '../components/Button/DeleteBtn'
 import LogoutBtn from '../components/Button/LogoutBtn'
 import ProfileForm from '../components/Form/ProfileForm'
 import DeleteUserDialog from '../components/Dialog/DeleteUserDialog'
-import Nav from '../components/Nav/Nav'
 
 interface TabPanelProps {
   children?: React.ReactNode

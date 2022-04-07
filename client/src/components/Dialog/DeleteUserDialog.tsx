@@ -17,17 +17,14 @@ import { deleteUser } from '../../redux/auth/actions'
 export default function DeleteUserDialog() {
   const dispatch = useDispatch()
   const open = useSelector((state: RootState) => state.dialog.state)
-  // const userId = useSelector((state: RootState) => state.auth.user?._id)
 
   function handleClose() {
     dispatch(openDialog(false))
   }
 
   function handleDelete() {
-    // if (userId) {
     dispatch(deleteUser())
     dispatch(openDialog(false))
-    // }
   }
 
   return (
@@ -49,7 +46,7 @@ export default function DeleteUserDialog() {
           <Button variant="contained" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="outlined" autoFocus onClick={handleDelete}>
+          <Button variant="outlined" onClick={handleDelete}>
             Delete
           </Button>
         </Stack>

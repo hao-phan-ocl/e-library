@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Container, ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
@@ -13,8 +13,8 @@ import theme from './theme/theme'
 import Favorite from './pages/Favorite'
 import Profile from './pages/Profile'
 import getProfile from './redux/auth/actions'
+import OuterContainer from './components/OuterContainer/OuterContainer'
 import './App.scss'
-import Nav from './components/Nav/Nav'
 
 function App() {
   const dispatch = useDispatch()
@@ -28,10 +28,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-        </Routes>
-        <Container maxWidth="md">
-          <Nav />
-          <Routes>
+          {/* OuterContainer to apply Container maxWidth to all children except Login page */}
+          <Route element={<OuterContainer />}>
             <Route path="/" element={<Home />} />
             <Route path="/book/:bookId" element={<BookInfo />} />
             <Route path="/author/:authorName" element={<AuthorInfo />} />
@@ -40,8 +38,8 @@ function App() {
               <Route path="/favorites" element={<Favorite />} />
               <Route path="/book-edit/:bookId" element={<BookEdit />} />
             </Route>
-          </Routes>
-        </Container>
+          </Route>
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   )

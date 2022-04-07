@@ -50,7 +50,7 @@ export default function DeleteBookDialog() {
           <Button variant="contained" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="outlined" autoFocus onClick={handleDelete}>
+          <Button variant="outlined" onClick={handleDelete}>
             Delete
           </Button>
         </Stack>
