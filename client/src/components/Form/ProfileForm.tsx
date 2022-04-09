@@ -42,8 +42,8 @@ export default function ProfileForm() {
     resolver: yupResolver(schema),
   })
 
-  async function onSubmit(update: FormData) {
-    const res = await instance.put(request('users', 'update'), update)
+  async function onSubmit(data: FormData) {
+    const res = await instance.put(request('users', 'update'), data)
     if (res.status === 200) alert('User updated')
   }
 

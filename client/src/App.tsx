@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          {/* OuterContainer to apply Container maxWidth to all children except Login page */}
+          {/* OuterContainer to apply Container maxWidth to all children except <Login/> */}
           <Route element={<OuterContainer />}>
             <Route path="/" element={<Home />} />
             <Route path="/book/:bookId" element={<BookInfo />} />
