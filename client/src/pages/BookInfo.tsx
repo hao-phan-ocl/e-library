@@ -13,7 +13,7 @@ import AddBtn from '../components/Button/AddBtn'
 export default function BookInfo() {
   const { bookId } = useParams()
   const dispatch = useDispatch()
-  const { book, loading } = useSelector((state: RootState) => state.book)
+  const { book } = useSelector((state: RootState) => state.book)
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {

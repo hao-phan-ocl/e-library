@@ -78,7 +78,6 @@ export function removeFavorite(bookId: string) {
           bookId: bookId,
         }
       )
-      console.log(res.data)
       dispatch(updateFavSuccess(res.data))
     } catch (error) {
       dispatch(updateFavFail(error as Error))

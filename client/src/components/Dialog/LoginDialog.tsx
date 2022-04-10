@@ -15,11 +15,6 @@ export default function LoginDialog() {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      {/* <List>
-        <ListItem onClick={handleClose}>
-          <LoginTable />
-        </ListItem>
-      </List> */}
       <Box onClick={handleClose}>
         <LoginTable />
       </Box>

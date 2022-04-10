@@ -27,6 +27,9 @@ const initialState: RootState = {
   dialog: {
     state: false,
   },
+  authors: {
+    authors: [],
+  },
 }
 
 const store = createStore(

@@ -1,11 +1,11 @@
 import { Stack, TextField, Typography } from '@mui/material'
-import { Control, Controller, FieldErrors } from 'react-hook-form'
+import { Control, Controller, FieldError } from 'react-hook-form'
 
 import { FormData } from './BookForm'
 
 type SingleFieldType = {
   control: Control<FormData>
-  errors?: FieldErrors
+  errors?: FieldError
   title: string
   name: any
 }
