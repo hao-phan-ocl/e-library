@@ -51,7 +51,7 @@ async function deleteBook(bookId: string) {
 }
 
 async function updateBook(bookId: string, update: Partial<BookDocument>) {
-  // Clear author list of the updating book first
+  // Clear author list of the updating book before update
   const updatingBook = await Book.findById(bookId)
 
   if (!updatingBook) {
@@ -72,6 +72,7 @@ async function updateBook(bookId: string, update: Partial<BookDocument>) {
     throw new NotFoundError('Book not found')
   }
 
+  // Poppulate Author's books with new updated bookId
   updatedBook.authors.forEach(
     async (author) =>
       await Author.findByIdAndUpdate(author, { $push: { books: bookId } })

@@ -12,8 +12,7 @@ export async function createAuthor(
 ) {
   try {
     const { name } = req.body
-    const author = new Author({ name })
-    const createdAuthor = await AuthorService.create(author)
+    const createdAuthor = await AuthorService.create(name)
     res.status(201).json(createdAuthor)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
