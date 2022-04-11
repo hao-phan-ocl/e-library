@@ -33,6 +33,8 @@ export default function SingleField({
             {...field}
             error={Boolean(errors)}
             helperText={errors?.message}
+            multiline
+            maxRows={4}
             fullWidth
             size="small"
           />

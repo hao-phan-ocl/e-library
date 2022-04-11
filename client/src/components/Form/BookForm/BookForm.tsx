@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import { request } from '../../../axios/requests'
-import { Book } from '../../../types'
+import { Author, Book } from '../../../types'
 import instance from '../../../axios/instance'
 import SaveBtn from '../../Button/SaveBtn'
 import AuthorSubForm from './SubForm/AuthorSubForm'
@@ -13,7 +13,7 @@ import SingleField from './SingleField'
 
 export type FormData = {
   title: string
-  // authors: { author: string }[] //
+  authors: { author: string }[] //
   categories: { category: string }[] // react-hook-form only accepts objects but api call was string[]
   description: string
   language: string
@@ -33,9 +33,9 @@ const schema = yup
       .of(
         yup.object({ category: yup.string().required('Category is required') })
       ),
-    // authors: yup
-    //   .array()
-    //   .of(yup.object({ author: yup.string().required('Author is required') })),
+    authors: yup
+      .array()
+      .of(yup.object({ author: yup.string().required('Author is required') })),
     language: yup.string().required('Language is required'),
     year: yup.number().positive().integer().required(),
   })
@@ -43,6 +43,7 @@ const schema = yup
 
 export default function BookForm({ book }: BookProps) {
   const {
+    setValue,
     watch,
     handleSubmit,
     control,
@@ -56,10 +57,10 @@ export default function BookForm({ book }: BookProps) {
         book.categories.map((elem) => {
           return { category: elem }
         }) ?? '',
-      // authors:
-      //   book.authors.map((elem) => {
-      //     return { author: elem.name }
-      //   }) ?? '',
+      authors:
+        book.authors.map((elem) => {
+          return { author: elem.name }
+        }) ?? '',
       language: book.language ?? '',
       year: book.publicationYear ?? '',
     },
@@ -67,24 +68,59 @@ export default function BookForm({ book }: BookProps) {
   })
 
   async function onSubmit(data: FormData) {
-    const { categories, title, description, language, year } = data
+    const { categories, title, description, authors, language, year } = data
 
+    // Transfer categories as an object back to string[]
     let categoriesArr: string[] = []
     if (categories.length) {
-      categories.map((elem) => categoriesArr.push(Object.values(elem)[0]))
+      categories.forEach((elem) => categoriesArr.push(Object.values(elem)[0]))
     }
 
-    // Transfer categories as an object back to string[] to pass in api request
-    const update = {
-      title: title,
-      description: description,
-      categories: categoriesArr,
-      language: language,
-      year: year,
+    // Transfer authors as an object back to string[] to pass in api request
+    // Here authors is still an array of authorNames while api requires author IDs
+    let authorNameArr: string[] = []
+    if (authors.length) {
+      authors.forEach((elem) => authorNameArr.push(Object.values(elem)[0]))
     }
 
-    const res = await instance.put(request('books', 'update', book._id), update)
-    if (res.status === 200) alert('Book updated')
+    // Call api to find authorId by name
+    async function getAuthorId() {
+      let arrayOfIds: string[] = []
+
+      await Promise.all(
+        authorNameArr.map(async (elem) => {
+          const res = await instance.get(request('authors', 'name', elem))
+
+          const authors: Author[] = res.data
+          authors.forEach((elem) => arrayOfIds.push(elem._id))
+        })
+      )
+
+      return arrayOfIds
+    }
+
+    async function updateBook() {
+      const authorIdArr = await getAuthorId()
+
+      const update = {
+        title: title,
+        description: description,
+        categories: categoriesArr,
+        authors: authorIdArr,
+        language: language,
+        year: year,
+      }
+
+      const res = await instance.put(
+        request('books', 'update', book._id),
+        update
+      )
+      if (res.status === 200) {
+        alert('Book updated')
+      }
+    }
+
+    updateBook()
   }
 
   return (
@@ -120,17 +156,18 @@ export default function BookForm({ book }: BookProps) {
 
           <CategoryFieldArray control={control} errors={errors.categories} />
 
-          {/* <AuthorSubForm
-          control={control}
-          errors={errors.authors}
-          watch={watch}
-        /> */}
+          <AuthorSubForm
+            control={control}
+            errors={errors.authors}
+            watch={watch}
+            setValue={setValue}
+          />
         </Stack>
         <SaveBtn />
       </form>
-      <Stack spacing={3} mb={3} maxWidth="80%">
+      {/* <Stack spacing={3} mb={3} maxWidth="80%">
         <AuthorSubForm book={book} />
-      </Stack>
+      </Stack> */}
     </Stack>
   )
 }

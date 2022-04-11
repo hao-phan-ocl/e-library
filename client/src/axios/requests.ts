@@ -12,6 +12,7 @@ type UrlType =
   | 'delete'
   | 'profile'
   | 'update'
+  | 'create'
 
 type IdType = string
 
