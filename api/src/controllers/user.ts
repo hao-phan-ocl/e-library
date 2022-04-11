@@ -89,7 +89,7 @@ export async function updateUser(
   }
 }
 
-// PUT /users/add-books/
+// PUT /users/add-favorite/
 export async function addBook(req: Request, res: Response, next: NextFunction) {
   try {
     const { bookId } = req.body
@@ -105,7 +105,7 @@ export async function addBook(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-// PUT /users/remove-books/
+// PUT /users/delete-favorite/
 export async function removeBook(
   req: Request,
   res: Response,

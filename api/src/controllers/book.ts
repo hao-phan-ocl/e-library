@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import Book from '../models/Book'
+import Book, { BookDocument } from '../models/Book'
 import BookService from '../services/book'
 import { BadRequestError } from '../helpers/apiError'
 
@@ -49,7 +49,7 @@ export async function updateBook(
   next: NextFunction
 ) {
   try {
-    const update = req.body
+    const update = req.body as BookDocument
     const bookId = req.params.bookId
     const updatedBook = await BookService.updateBook(bookId, update)
     // await BookService.populateAuthor(updatedBook)

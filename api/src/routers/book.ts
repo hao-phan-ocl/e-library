@@ -17,7 +17,7 @@ router.get('/all', findAll)
 router.get('/id/:bookId', findById)
 router.get('/title/:title', findByTitle)
 
-router.put('/:bookId', authRequired, updateBook)
+router.put('/update/:bookId', updateBook)
 
 router.delete('/:bookId', authRequired, deleteBook)
 

@@ -17,8 +17,8 @@ router.get('/name/:authorName', findByName)
 
 router.put('/:authorId', updateAuthor)
 
-router.delete('/:authorId', deleteAuthor)
+router.delete('/delete/:authorId', deleteAuthor)
 
-router.post('/', createAuthor)
+router.post('/create', createAuthor)
 
 export default router

@@ -51,15 +51,33 @@ async function deleteBook(bookId: string) {
 }
 
 async function updateBook(bookId: string, update: Partial<BookDocument>) {
-  const foundBook = await Book.findByIdAndUpdate(bookId, update, {
-    new: true,
-  })
+  // Clear author list of the updating book first
+  const updatingBook = await Book.findById(bookId)
 
-  if (!foundBook) {
+  if (!updatingBook) {
     throw new NotFoundError('Book not found')
   }
 
-  return foundBook
+  updatingBook?.authors.forEach(
+    async (author) =>
+      await Author.findByIdAndUpdate(author, { $pull: { books: bookId } })
+  )
+
+  // Update book
+  const updatedBook = await Book.findByIdAndUpdate(bookId, update, {
+    new: true,
+  })
+
+  if (!updatedBook) {
+    throw new NotFoundError('Book not found')
+  }
+
+  updatedBook.authors.forEach(
+    async (author) =>
+      await Author.findByIdAndUpdate(author, { $push: { books: bookId } })
+  )
+
+  return updatedBook
 }
 
 export default {

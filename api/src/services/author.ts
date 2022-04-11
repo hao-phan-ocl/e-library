@@ -1,8 +1,16 @@
 import Book from '../models/Book'
-import { NotFoundError } from '../helpers/apiError'
+import { BadRequestError, NotFoundError } from '../helpers/apiError'
 import Author, { AuthorDocument } from '../models/Author'
 
 async function create(author: AuthorDocument) {
+  const foundAuthor = await Author.find({
+    name: { $regex: author.name, $options: 'i' },
+  })
+
+  if (foundAuthor) {
+    throw new BadRequestError('Author existed')
+  }
+
   return await author.save()
 }
 

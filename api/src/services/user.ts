@@ -52,7 +52,12 @@ async function findAll() {
 
 // Find single user
 async function findById(userId: string) {
-  const foundUser = await User.findById(userId).populate('bookLists')
+  const foundUser = await User.findById(userId)
+    .populate('bookLists')
+    .populate({
+      path: 'bookLists',
+      populate: { path: 'authors', select: 'name' },
+    })
 
   if (!foundUser) {
     throw new NotFoundError('User not found')
@@ -117,7 +122,12 @@ async function addBook(userId: string, bookId: string) {
     userId,
     { $push: { bookLists: bookId } },
     { new: true }
-  ).populate('bookLists')
+  )
+    .populate('bookLists')
+    .populate({
+      path: 'bookLists',
+      populate: { path: 'authors', select: 'name' },
+    })
 
   await Book.findByIdAndUpdate(bookId, { $push: { readers: userId } })
 
@@ -136,7 +146,12 @@ async function removeBook(userId: string, bookId: string) {
     userId,
     { $pull: { bookLists: bookId } },
     { new: true }
-  ).populate('bookLists')
+  )
+    .populate('bookLists')
+    .populate({
+      path: 'bookLists',
+      populate: { path: 'authors', select: 'name' },
+    })
 
   await Book.findByIdAndUpdate(bookId, { $pull: { readers: userId } })
 
