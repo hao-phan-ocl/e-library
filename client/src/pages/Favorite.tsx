@@ -8,7 +8,7 @@ import { RootState } from '../redux/rootReducer'
 
 export default function Favorite() {
   const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
-  console.log(favBooks)
+
   return (
     <>
       <BackBtn text={'My Favorites'} />

@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import * as yup from 'yup'
+
 import instance from '../../../axios/instance'
 import { request } from '../../../axios/requests'
 import { Author } from '../../../types'
@@ -39,32 +40,32 @@ export default function CreateAuthor() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack
-        direction="column"
-        maxWidth="50%"
-        gap={1}
-        mt={2}
-        alignItems="flex-start"
-      >
-        <Typography>Name: </Typography>
-        <Controller
-          name="name"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <TextField
-              {...field}
-              error={Boolean(errors.name)}
-              helperText={errors.name?.message}
-              size="small"
-            />
-          )}
-        />
-        <Button size="small" type="submit" variant="outlined">
-          Create
-        </Button>
-      </Stack>
-    </form>
+    <Stack
+      direction="column"
+      maxWidth="50%"
+      gap={1}
+      mt={2}
+      alignItems="flex-start"
+    >
+      <Typography>Name: </Typography>
+      <Controller
+        name="name"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            error={Boolean(errors.name)}
+            helperText={errors.name?.message}
+            size="small"
+          />
+        )}
+      />
+      {/* changed to onClick instead of onSubmit to avoid duplicate submit actions
+      of nested forms */}
+      <Button size="small" variant="outlined" onClick={handleSubmit(onSubmit)}>
+        Create
+      </Button>
+    </Stack>
   )
 }

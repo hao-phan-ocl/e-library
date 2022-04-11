@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Stack,
   Typography,
@@ -17,11 +16,9 @@ import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
 import CreateAuthor from '../Form/AuthorForm/CreateAuthor'
 import { FormData } from '../Form/BookForm/BookForm'
-// import { AuthorForm } from '../Form/BookForm/SubForm/AuthorSubForm'
 
 type CheckAuthorProps = {
   index: number
-  // setValue: UseFormSetValue<AuthorForm>
   setValue: UseFormSetValue<FormData>
 }
 
@@ -48,7 +45,7 @@ export default function CheckAuthorDialog({
           <Button
             key={author._id}
             onClick={() => {
-              setValue(`authors.${index}.author`, author.name)
+              setValue(`authors.${index}.author`, author.name) // set value to form submit
               handleClose()
             }}
           >

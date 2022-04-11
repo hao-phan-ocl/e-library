@@ -70,14 +70,14 @@ export default function BookForm({ book }: BookProps) {
   async function onSubmit(data: FormData) {
     const { categories, title, description, authors, language, year } = data
 
-    // Transfer categories as an object back to string[]
+    // Transfer categories as an object back to string[] for api call
     let categoriesArr: string[] = []
     if (categories.length) {
       categories.forEach((elem) => categoriesArr.push(Object.values(elem)[0]))
     }
 
-    // Transfer authors as an object back to string[] to pass in api request
-    // Here authors is still an array of authorNames while api requires author IDs
+    // Transfer authors as an object back to string[] for api call
+    // Until now authors is still an array of authorNames while api requires author IDs
     let authorNameArr: string[] = []
     if (authors.length) {
       authors.forEach((elem) => authorNameArr.push(Object.values(elem)[0]))
@@ -99,6 +99,9 @@ export default function BookForm({ book }: BookProps) {
       return arrayOfIds
     }
 
+    // Here, categories and authors both are string[] and ready for api call
+    // categoies is array of text
+    // authors is array of IDs. Both are due to backend logic
     async function updateBook() {
       const authorIdArr = await getAuthorId()
 
@@ -119,7 +122,6 @@ export default function BookForm({ book }: BookProps) {
         alert('Book updated')
       }
     }
-
     updateBook()
   }
 
@@ -139,23 +141,19 @@ export default function BookForm({ book }: BookProps) {
             title="Description"
             name="description"
           />
-
           <SingleField
             control={control}
             errors={errors.language}
             title="Language"
             name="language"
           />
-
           <SingleField
             control={control}
             errors={errors.year}
             title="Year"
             name="year"
           />
-
           <CategoryFieldArray control={control} errors={errors.categories} />
-
           <AuthorSubForm
             control={control}
             errors={errors.authors}
@@ -165,9 +163,6 @@ export default function BookForm({ book }: BookProps) {
         </Stack>
         <SaveBtn />
       </form>
-      {/* <Stack spacing={3} mb={3} maxWidth="80%">
-        <AuthorSubForm book={book} />
-      </Stack> */}
     </Stack>
   )
 }
