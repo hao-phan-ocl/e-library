@@ -1,7 +1,7 @@
 import { Stack, TextField, Typography } from '@mui/material'
 import { Control, Controller, FieldError } from 'react-hook-form'
 
-import { FormData } from './BookForm'
+import { FormData } from './UpdateBookForm'
 
 type SingleFieldType = {
   control: Control<FormData>
@@ -34,7 +34,7 @@ export default function SingleField({
             error={Boolean(errors)}
             helperText={errors?.message}
             multiline
-            maxRows={4}
+            maxRows={5}
             fullWidth
             size="small"
           />

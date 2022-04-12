@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import BackBtn from '../components/Button/BackBtn'
 import DeleteBtn from '../components/Button/DeleteBtn'
 import DeleteBookDialog from '../components/Dialog/DeleteBookDialog'
-import BookForm from '../components/Form/BookForm/BookForm'
+import UpdateBookForm from '../components/Form/Book/UpdateBookForm'
 import { fetchBook } from '../redux/fetchBook/actions'
 import { RootState } from '../redux/rootReducer'
 
@@ -73,7 +73,7 @@ export default function BookEdit() {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            {book && <BookForm book={book} />}
+            {book && <UpdateBookForm book={book} />}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Stack spacing={4} alignItems="flex-start">

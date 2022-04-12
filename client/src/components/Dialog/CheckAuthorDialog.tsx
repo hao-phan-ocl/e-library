@@ -8,14 +8,13 @@ import {
   Typography,
 } from '@mui/material'
 import { useState } from 'react'
-
 import { UseFormSetValue } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
-import CreateAuthor from '../Form/AuthorForm/CreateAuthor'
-import { FormData } from '../Form/BookForm/BookForm'
+import CreateAuthor from '../Form/Author/CreateAuthor'
+import { FormData } from '../Form/Book/UpdateBookForm'
 
 type CheckAuthorProps = {
   index: number

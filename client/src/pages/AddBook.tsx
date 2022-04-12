@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import { Paper, Stack, Tabs, Tab, Typography, Box } from '@mui/material'
+import { Paper, Tabs, Tab, Typography, Box } from '@mui/material'
 
 import BackBtn from '../components/Button/BackBtn'
-import DeleteBtn from '../components/Button/DeleteBtn'
-import LogoutBtn from '../components/Button/LogoutBtn'
-import ProfileForm from '../components/Form/Profile/ProfileForm'
-import DeleteUserDialog from '../components/Dialog/DeleteUserDialog'
+import AddBookForm from '../components/Form/Book/AddBookForm'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -42,7 +39,7 @@ function a11yProps(index: number) {
   }
 }
 
-export default function Profile() {
+export default function AddBook() {
   const [value, setValue] = useState(0)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -50,34 +47,16 @@ export default function Profile() {
 
   return (
     <>
-      <BackBtn text={'My Profile'} />
+      <BackBtn text={'Add Book'} />
       <Paper>
         <Box sx={{ width: '100%' }} mt={3}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="profile tabs"
-            >
-              <Tab label="Profile Info" {...a11yProps(0)} />
-              <Tab label="Remove Profile" {...a11yProps(1)} />
+            <Tabs value={value} onChange={handleChange} aria-label="book tabs">
+              <Tab label="Book Info" {...a11yProps(0)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <ProfileForm />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Stack spacing={4} alignItems="flex-start">
-              <Stack spacing={1}>
-                <Typography fontWeight={'800'}>Log out</Typography>
-                <LogoutBtn />
-              </Stack>
-              <Stack spacing={1}>
-                <Typography fontWeight={'800'}>Remove account</Typography>
-                <DeleteBtn text="remove my account" />
-                <DeleteUserDialog />
-              </Stack>
-            </Stack>
+            <AddBookForm />
           </TabPanel>
         </Box>
       </Paper>

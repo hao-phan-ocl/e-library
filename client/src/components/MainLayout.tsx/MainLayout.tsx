@@ -56,6 +56,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
               >
                 <Stack alignItems="flex-start">
                   <Typography
+                    maxWidth="90%"
                     component={Link}
                     to={`/book/${book._id}`}
                     gutterBottom

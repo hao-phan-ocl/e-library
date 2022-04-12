@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import SaveBtn from '../Button/SaveBtn'
-import instance from '../../axios/instance'
-import { request } from '../../axios/requests'
-import { RootState } from '../../redux/rootReducer'
+import SaveBtn from '../../Button/SaveBtn'
+import instance from '../../../axios/instance'
+import { request } from '../../../axios/requests'
+import { RootState } from '../../../redux/rootReducer'
 
 type FormData = {
   firstName: string

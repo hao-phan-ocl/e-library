@@ -3,26 +3,14 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import { request } from '../../../axios/requests'
-import { Author, Book } from '../../../types'
-import instance from '../../../axios/instance'
 import SaveBtn from '../../Button/SaveBtn'
-import AuthorSubForm from './SubForm/AuthorSubForm'
+import AuthorFieldArray from './AuthorFieldArray'
 import CategoryFieldArray from './CategoryFieldArray'
 import SingleField from './SingleField'
-
-export type FormData = {
-  title: string
-  authors: { author: string }[] //
-  categories: { category: string }[] // react-hook-form only accepts objects but api call was string[]
-  description: string
-  language: string
-  year: number
-}
-
-export type BookProps = {
-  book: Book
-}
+import { FormData } from './UpdateBookForm'
+import { Author } from '../../../types'
+import instance from '../../../axios/instance'
+import { request } from '../../../axios/requests'
 
 const schema = yup
   .object({
@@ -37,11 +25,12 @@ const schema = yup
       .array()
       .of(yup.object({ author: yup.string().required('Author is required') })),
     language: yup.string().required('Language is required'),
-    year: yup.number().positive().integer().required(),
+    image: yup.string().required('Must be a string of url'),
+    year: yup.number().positive().integer().required('Year is required'),
   })
   .required()
 
-export default function BookForm({ book }: BookProps) {
+export default function AddBookForm() {
   const {
     setValue,
     watch,
@@ -51,24 +40,20 @@ export default function BookForm({ book }: BookProps) {
   } = useForm<FormData>({
     mode: 'onBlur',
     defaultValues: {
-      title: book.title ?? '',
-      description: book.description ?? '',
-      categories:
-        book.categories.map((elem) => {
-          return { category: elem }
-        }) ?? '',
-      authors:
-        book.authors.map((elem) => {
-          return { author: elem.name }
-        }) ?? '',
-      language: book.language ?? '',
-      year: book.publicationYear ?? '',
+      title: '',
+      description: '',
+      categories: [{ category: '' }],
+      authors: [{ author: '' }],
+      language: '',
+      year: undefined,
+      image: 'http://cdn.bakerpublishinggroup.com/covers/listing/missing.png',
     },
     resolver: yupResolver(schema),
   })
 
   async function onSubmit(data: FormData) {
-    const { categories, title, description, authors, language, year } = data
+    const { categories, title, description, authors, language, image, year } =
+      data
 
     // Transfer categories as an object back to string[] for api call
     let categoriesArr: string[] = []
@@ -102,28 +87,26 @@ export default function BookForm({ book }: BookProps) {
     // Here, categories and authors both are string[] and ready for api call
     // categoies is array of text
     // authors is array of IDs. Both are due to backend logic
-    async function updateBook() {
+    async function addBook() {
       const authorIdArr = await getAuthorId()
 
-      const update = {
+      const add = {
         title: title,
         description: description,
         categories: categoriesArr,
         authors: authorIdArr,
         language: language,
-        year: year,
+        image: image,
+        publicationYear: year,
       }
 
-      const res = await instance.put(
-        request('books', 'update', book._id),
-        update
-      )
-      if (res.status === 200) {
-        alert('Book updated')
+      const res = await instance.post(request('books', 'create'), add)
+      if (res.status === 201) {
+        alert('Book added')
+        window.location.reload() // reload page after update
       }
-      window.location.reload() // reload page after update
     }
-    updateBook()
+    addBook()
   }
 
   return (
@@ -136,6 +119,7 @@ export default function BookForm({ book }: BookProps) {
             title="Title"
             name="title"
           />
+
           <SingleField
             control={control}
             errors={errors.description}
@@ -154,8 +138,14 @@ export default function BookForm({ book }: BookProps) {
             title="Year"
             name="year"
           />
+          <SingleField
+            control={control}
+            errors={errors.image}
+            title="Image"
+            name="image"
+          />
           <CategoryFieldArray control={control} errors={errors.categories} />
-          <AuthorSubForm
+          <AuthorFieldArray
             control={control}
             errors={errors.authors}
             watch={watch}

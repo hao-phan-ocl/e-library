@@ -18,10 +18,10 @@ import {
 import { useDispatch } from 'react-redux'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 
-import { FormData } from '../BookForm'
-import { openDialog } from '../../../../redux/dialog/actions'
-import { searchAuthors } from '../../../../redux/author/action'
-import CheckAuthorDialog from '../../../Dialog/CheckAuthorDialog'
+import { FormData } from './UpdateBookForm'
+import { openDialog } from '../../../redux/dialog/actions'
+import { searchAuthors } from '../../../redux/author/action'
+import CheckAuthorDialog from '../../Dialog/CheckAuthorDialog'
 
 type AuthorForm = {
   control: Control<FormData>
@@ -30,7 +30,7 @@ type AuthorForm = {
   setValue: UseFormSetValue<FormData>
 }
 
-export default function AuthorSubForm({
+export default function AuthorFieldArray({
   control,
   errors,
   watch,

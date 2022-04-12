@@ -53,7 +53,12 @@ export default function BookInfo() {
           </Stack>
         </Stack>
         <Stack pl={2} pr={1} alignItems="flex-start">
-          <Typography gutterBottom variant="h5">
+          <Typography
+            gutterBottom
+            variant="h5"
+            fontSize="1.4rem"
+            maxWidth="90%"
+          >
             {book?.title}
           </Typography>
           {book?.authors.map((author, i) => (

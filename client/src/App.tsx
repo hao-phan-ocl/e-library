@@ -14,6 +14,7 @@ import Favorite from './pages/Favorite'
 import Profile from './pages/Profile'
 import getProfile from './redux/auth/actions'
 import OuterContainer from './components/OuterContainer/OuterContainer'
+import AddBook from './pages/AddBook'
 import './App.scss'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/favorites" element={<Favorite />} />
               <Route path="/book-edit/:bookId" element={<BookEdit />} />
+              <Route path="/book-add" element={<AddBook />} />
             </Route>
           </Route>
         </Routes>

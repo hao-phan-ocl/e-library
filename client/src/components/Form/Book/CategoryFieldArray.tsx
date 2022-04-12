@@ -10,7 +10,7 @@ import {
 import { Control, Controller, FieldError, useFieldArray } from 'react-hook-form'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 
-import { FormData } from './BookForm'
+import { FormData } from './UpdateBookForm'
 
 type FieldArrayType = {
   control: Control<FormData>
