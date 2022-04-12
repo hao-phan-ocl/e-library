@@ -121,6 +121,7 @@ export default function BookForm({ book }: BookProps) {
       if (res.status === 200) {
         alert('Book updated')
       }
+      window.location.reload() // reload page after update
     }
     updateBook()
   }
