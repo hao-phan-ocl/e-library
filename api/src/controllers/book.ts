@@ -4,7 +4,7 @@ import Book, { BookDocument } from '../models/Book'
 import BookService from '../services/book'
 import { BadRequestError } from '../helpers/apiError'
 
-// POST /books
+// POST /books/create
 export async function createBook(
   req: Request,
   res: Response,
@@ -31,7 +31,6 @@ export async function createBook(
     })
 
     const createdBook = await BookService.create(book)
-    await BookService.populateAuthor(createdBook) // this to add bookId to the referenced author as well
     res.status(201).json(createdBook)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -42,7 +41,7 @@ export async function createBook(
   }
 }
 
-// PUT /books/:bookId
+// PUT /books/update/:bookId
 export async function updateBook(
   req: Request,
   res: Response,
@@ -52,7 +51,6 @@ export async function updateBook(
     const update = req.body as BookDocument
     const bookId = req.params.bookId
     const updatedBook = await BookService.updateBook(bookId, update)
-    // await BookService.populateAuthor(updatedBook)
     res.json(updatedBook)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {

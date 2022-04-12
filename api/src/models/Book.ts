@@ -25,7 +25,11 @@ export const bookSchema = new Schema(
     categories: [{ type: String, requried: true }],
     language: { type: String, required: true },
     publicationYear: { type: Number, required: true },
-    image: { type: String, required: true },
+    image: {
+      type: String,
+      required: true,
+      default: 'http://cdn.bakerpublishinggroup.com/covers/listing/missing.png',
+    },
     readers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   { timestamps: true }

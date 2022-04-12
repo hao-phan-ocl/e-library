@@ -3,15 +3,16 @@ import { NotFoundError } from '../helpers/apiError'
 import Book, { BookDocument } from '../models/Book'
 
 async function create(book: BookDocument) {
-  return await book.save()
-}
+  const createdBook = await Book.create(book)
 
-async function populateAuthor(book: BookDocument) {
+  // add bookId to the referenced author as well
   book.authors.forEach(async (author) => {
     await Author.findByIdAndUpdate(author, {
       $push: { books: book },
     })
   })
+
+  return createdBook
 }
 
 async function findAll() {
@@ -88,5 +89,4 @@ export default {
   deleteBook,
   updateBook,
   findByTitle,
-  populateAuthor,
 }

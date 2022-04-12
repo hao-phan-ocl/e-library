@@ -21,6 +21,6 @@ router.put('/update/:bookId', updateBook)
 
 router.delete('/:bookId', authRequired, deleteBook)
 
-router.post('/', createBook)
+router.post('/create', createBook)
 
 export default router
