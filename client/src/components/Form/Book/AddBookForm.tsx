@@ -8,7 +8,7 @@ import AuthorFieldArray from './AuthorFieldArray'
 import CategoryFieldArray from './CategoryFieldArray'
 import SingleField from './SingleField'
 import { FormData } from './UpdateBookForm'
-import { Author } from '../../../types'
+import { Author } from '../../../types/schema'
 import instance from '../../../axios/instance'
 import { request } from '../../../axios/requests'
 

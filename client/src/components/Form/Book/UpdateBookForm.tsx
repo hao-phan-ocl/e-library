@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import { request } from '../../../axios/requests'
-import { Author, Book } from '../../../types'
+import { Author, Book } from '../../../types/schema'
 import instance from '../../../axios/instance'
 import SaveBtn from '../../Button/SaveBtn'
 import CategoryFieldArray from './CategoryFieldArray'

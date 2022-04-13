@@ -1,4 +1,4 @@
-export const OPEN_DIALOG = 'OPEN_DIALOG'
+import { OPEN_DIALOG, SetDialogType } from '../../types/redux/dialog'
 
 export function openDialog(state: boolean): SetDialogType {
   return {
@@ -6,10 +6,3 @@ export function openDialog(state: boolean): SetDialogType {
     payload: state,
   }
 }
-
-type SetDialogType = {
-  type: typeof OPEN_DIALOG
-  payload: boolean
-}
-
-export type SetDialogAction = ReturnType<typeof openDialog>

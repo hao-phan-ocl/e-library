@@ -2,16 +2,24 @@ import { Dispatch } from 'redux'
 
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
-import { User } from '../../types'
+import {
+  BOOKLISTS_UPDATED_FAILED,
+  BOOKLISTS_UPDATED_SUCCESSFULLY,
+  DeleteFailType,
+  DeleteSuccessType,
+  FavoriteFailType,
+  FavoriteSuccessType,
+  LOGGED_IN,
+  LOGGED_OUT,
+  LoginFailType,
+  LoginSuccessType,
+  LOGIN_FAILED,
+  Logout,
+  USER_DELETED_SUCCESSFULLY,
+  USER_DELETE_FAILED,
+} from '../../types/redux/auth'
+import { User } from '../../types/schema'
 import { RootState } from '../rootReducer'
-
-export const LOGGED_IN = 'LOGGED_IN'
-export const LOGIN_FAILED = 'LOGIN_FAILED'
-export const LOGGED_OUT = 'LOGGED_OUT'
-export const BOOKLISTS_UPDATED_SUCCESSFULLY = 'BOOKLISTS_UPDATED_SUCCESSFULLY'
-export const BOOKLISTS_UPDATED_FAILED = 'BOOKLISTS_UPDATED_FAILED'
-export const USER_DELETED_SUCCESSFULLY = 'USER_DELETED_SUCCESSFULLY'
-export const USER_DELETE_FAILED = 'USER_DELETE_FAILED'
 
 type GetState = () => RootState
 
@@ -99,71 +107,29 @@ export function deleteUser() {
   }
 }
 
-function updateFavSuccess(updatedUser: User): FavoriteSuccessType {
+export function updateFavSuccess(updatedUser: User): FavoriteSuccessType {
   return {
     type: BOOKLISTS_UPDATED_SUCCESSFULLY,
     payload: updatedUser,
   }
 }
 
-function updateFavFail(error: Error): FavoriteFailType {
+export function updateFavFail(error: Error): FavoriteFailType {
   return {
     type: BOOKLISTS_UPDATED_FAILED,
     payload: error,
   }
 }
 
-function deleteSuccess(): DeleteSuccessType {
+export function deleteSuccess(): DeleteSuccessType {
   return {
     type: USER_DELETED_SUCCESSFULLY,
   }
 }
 
-function deleteFail(error: Error): DeleteFailType {
+export function deleteFail(error: Error): DeleteFailType {
   return {
     type: USER_DELETE_FAILED,
     payload: error,
   }
 }
-
-type LoginSuccessType = {
-  type: typeof LOGGED_IN
-  payload: User
-}
-
-type LoginFailType = {
-  type: typeof LOGIN_FAILED
-  payload: Error
-}
-
-type Logout = {
-  type: typeof LOGGED_OUT
-}
-
-type FavoriteSuccessType = {
-  type: typeof BOOKLISTS_UPDATED_SUCCESSFULLY
-  payload: User
-}
-
-type FavoriteFailType = {
-  type: typeof BOOKLISTS_UPDATED_FAILED
-  payload: Error
-}
-
-type DeleteSuccessType = {
-  type: typeof USER_DELETED_SUCCESSFULLY
-}
-
-type DeleteFailType = {
-  type: typeof USER_DELETE_FAILED
-  payload: Error
-}
-
-export type AuthActions =
-  | ReturnType<typeof loginSuccess>
-  | ReturnType<typeof logout>
-  | ReturnType<typeof updateFavSuccess>
-  | ReturnType<typeof updateFavFail>
-  | ReturnType<typeof deleteSuccess>
-  | ReturnType<typeof deleteFail>
-  | ReturnType<typeof loginFail>

@@ -1,9 +1,9 @@
-import { Author } from '../../types'
+import { Author } from '../../types/schema'
 import {
   AUTHORS_LIST,
   SearchAuthorActions,
   SEARCH_AUTHOR_FAILED,
-} from './action'
+} from '../../types/redux/author'
 
 type InitialState = {
   authors: Author[]

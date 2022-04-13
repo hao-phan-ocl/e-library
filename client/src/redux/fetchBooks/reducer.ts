@@ -1,10 +1,10 @@
-import { Book } from '../../types'
+import { Book } from '../../types/schema'
 import {
-  BOOK_LOADING,
+  BOOKS_LOADING,
   FetchBooksActions,
   FETCH_BOOKS_FAIL,
   FETCH_BOOKS_SUCCESSFUL,
-} from './actions'
+} from '../../types/redux/fetchBooks'
 
 type InitialState = {
   books: Book[]
@@ -35,7 +35,7 @@ export default function booksReducer(
         error: action.payload,
       }
 
-    case BOOK_LOADING:
+    case BOOKS_LOADING:
       return {
         ...state,
         loading: action.payload,

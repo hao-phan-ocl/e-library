@@ -3,7 +3,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Book } from '../../types'
+import { Book } from '../../types/schema'
 import { addFavorite, removeFavorite } from '../../redux/auth/actions'
 import { RootState } from '../../redux/rootReducer'
 import { openDialog } from '../../redux/dialog/actions'

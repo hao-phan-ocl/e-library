@@ -5,7 +5,7 @@ import * as yup from 'yup'
 
 import instance from '../../../axios/instance'
 import { request } from '../../../axios/requests'
-import { Author } from '../../../types'
+import { Author } from '../../../types/schema'
 
 type AuthorFormType = {
   name: string

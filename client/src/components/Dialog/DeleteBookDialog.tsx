@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
-import { deleteUser } from '../../redux/auth/actions'
 import Transition from './Transition'
 
 export default function DeleteBookDialog() {

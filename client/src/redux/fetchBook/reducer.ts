@@ -1,10 +1,10 @@
-import { Book } from '../../types'
+import { Book } from '../../types/schema'
 import {
   BOOK_LOADING,
   FetchBookActions,
   FETCH_BOOK_FAIL,
   FETCH_BOOK_SUCCESSFUL,
-} from './actions'
+} from '../../types/redux/fetchBook'
 
 type InitialState = {
   book?: Book

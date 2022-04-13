@@ -1,4 +1,4 @@
-import { OPEN_DIALOG, SetDialogAction } from './actions'
+import { OPEN_DIALOG, SetDialogAction } from '../../types/redux/dialog'
 
 type InitialState = {
   state: boolean

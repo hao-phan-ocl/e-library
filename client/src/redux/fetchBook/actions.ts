@@ -2,12 +2,16 @@ import { Dispatch } from 'redux'
 
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
-import { Book } from '../../types'
+import {
+  BOOK_LOADING,
+  FetchBookFailType,
+  FetchBookSuccessType,
+  FETCH_BOOK_FAIL,
+  FETCH_BOOK_SUCCESSFUL,
+  LoadingBook,
+} from '../../types/redux/fetchBook'
+import { Book } from '../../types/schema'
 import { RootState } from '../rootReducer'
-
-export const FETCH_BOOK_SUCCESSFUL = 'FETCH_BOOK_SUCCESSFUL'
-export const FETCH_BOOK_FAIL = 'FETCH_BOOK_FAIL'
-export const BOOK_LOADING = 'BOOK_LOADING'
 
 type GetState = () => RootState
 
@@ -47,23 +51,3 @@ export function loadingBook(status: boolean): LoadingBook {
     payload: status,
   }
 }
-
-type FetchBookSuccessType = {
-  type: typeof FETCH_BOOK_SUCCESSFUL
-  payload: Book
-}
-
-type FetchBookFailType = {
-  type: typeof FETCH_BOOK_FAIL
-  payload: Error
-}
-
-type LoadingBook = {
-  type: typeof BOOK_LOADING
-  payload: boolean
-}
-
-export type FetchBookActions =
-  | ReturnType<typeof fetchBookSuccess>
-  | ReturnType<typeof fetchBookFail>
-  | ReturnType<typeof loadingBook>

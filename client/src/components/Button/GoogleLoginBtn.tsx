@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
 import { loginSuccess } from '../../redux/auth/actions'
-import { User } from '../../types'
+import { User } from '../../types/schema'
 
 type GoogleLoginResponse = {
   user: User

@@ -1,4 +1,4 @@
-import { User } from '../../types'
+import { User } from '../../types/schema'
 import {
   AuthActions,
   LOGGED_IN,
@@ -8,7 +8,7 @@ import {
   USER_DELETED_SUCCESSFULLY,
   USER_DELETE_FAILED,
   LOGIN_FAILED,
-} from './actions'
+} from '../../types/redux/auth'
 
 export type InitialState = {
   isAuthenticated: boolean

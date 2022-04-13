@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 
-import { Book } from '../../types'
+import { Book } from '../../types/schema'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
