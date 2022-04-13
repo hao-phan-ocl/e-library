@@ -36,7 +36,7 @@ export default function CheckAuthorDialog({
   }
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle sx={{ fontWeight: '700' }}>Did you mean:</DialogTitle>
 
       <DialogContent>
@@ -44,7 +44,7 @@ export default function CheckAuthorDialog({
           <Button
             key={author._id}
             onClick={() => {
-              setValue(`authors.${index}.author`, author.name) // set value to form submit
+              setValue(`authors.${index}.author`, author.name) // send chosen input to form submit
               handleClose()
             }}
           >
