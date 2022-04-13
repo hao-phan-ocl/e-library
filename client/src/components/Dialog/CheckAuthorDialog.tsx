@@ -15,6 +15,7 @@ import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
 import CreateAuthor from '../Form/Author/CreateAuthor'
 import { FormData } from '../Form/Book/UpdateBookForm'
+import Transition from './Transition'
 
 type CheckAuthorProps = {
   index: number
@@ -36,7 +37,7 @@ export default function CheckAuthorDialog({
   }
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
       <DialogTitle sx={{ fontWeight: '700' }}>Did you mean:</DialogTitle>
 
       <DialogContent>

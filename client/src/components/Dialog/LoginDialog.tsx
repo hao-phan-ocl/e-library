@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/rootReducer'
 import { openDialog } from '../../redux/dialog/actions'
 import LoginTable from '../LoginTable/LoginTable'
+import Transition from './Transition'
 
 export default function LoginDialog() {
   const dispatch = useDispatch()
@@ -14,7 +15,7 @@ export default function LoginDialog() {
   }
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
       <Box onClick={handleClose}>
         <LoginTable />
       </Box>
