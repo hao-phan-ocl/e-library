@@ -72,6 +72,13 @@ export default function Admin() {
 
                 <Stack direction="row" width="100%" gap={4}>
                   <Typography fontWeight="700" textAlign="right" width="20%">
+                    Created at:
+                  </Typography>
+                  <Typography>{user.createdAt}</Typography>
+                </Stack>
+
+                <Stack direction="row" width="100%" gap={4}>
+                  <Typography fontWeight="700" textAlign="right" width="20%">
                     Booklists:
                   </Typography>
                   <Stack direction="column" gap={1}>

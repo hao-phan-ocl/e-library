@@ -47,10 +47,7 @@ export default function Nav() {
       <Stack alignItems="center" spacing={1} direction="row">
         {isAuthenticated ? (
           <>
-            <IconButton
-              title="Notification"
-              onClick={() => navigate('/favorites')}
-            >
+            <IconButton component={Link} to="/favorites" title="Notification">
               <Badge badgeContent={favBooks?.length} color="primary">
                 <NotificationsIcon color="secondary" fontSize="medium" />
               </Badge>
