@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
 import { useSelector } from 'react-redux'
 
 import BackBtn from '../components/Button/BackBtn'
@@ -15,11 +14,9 @@ export default function Favorite() {
       {favBooks?.length ? (
         <MainLayout books={favBooks} />
       ) : (
-        <Box mt="20px">
-          <Typography variant="h6" fontSize="1.3rem">
-            Your favorite list is empty
-          </Typography>
-        </Box>
+        <Typography variant="h6" fontSize="1.3rem">
+          Your favorite list is empty
+        </Typography>
       )}
     </>
   )

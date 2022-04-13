@@ -49,7 +49,7 @@ export default function AddBook() {
     <>
       <BackBtn text={'Add Book'} />
       <Paper>
-        <Box sx={{ width: '100%' }} mt={3}>
+        <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="book tabs">
               <Tab label="Book Info" {...a11yProps(0)} />

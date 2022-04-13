@@ -52,7 +52,7 @@ export default function Profile() {
     <>
       <BackBtn text={'My Profile'} />
       <Paper>
-        <Box sx={{ width: '100%' }} mt={3}>
+        <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs
               value={value}

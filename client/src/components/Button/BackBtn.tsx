@@ -8,7 +8,7 @@ type BackButtonProps = {
 
 export default function BackBtn({ text }: BackButtonProps) {
   return (
-    <Stack alignItems="center" direction="row" spacing={2}>
+    <Stack alignItems="center" direction="row" spacing={2} mb={3}>
       <Link to="/">
         <ArrowBackIcon
           sx={{ ':hover': { color: '#49AFD0' }, cursor: 'pointer' }}

@@ -5,25 +5,27 @@ import {
   Menu,
   Stack,
   Typography,
-  Badge,
+  Avatar,
 } from '@mui/material'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import IosShareIcon from '@mui/icons-material/IosShare'
-import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
-import BookMarkIcon from '@mui/icons-material/Bookmark'
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 import { logout } from '../../redux/auth/actions'
-import { RootState } from '../../redux/rootReducer'
+import { deepOrange } from '@mui/material/colors'
 
-export default function ProfileMenu() {
+type ProfileProps = {
+  firstName?: string
+}
+
+export default function ProfileMenu({ firstName }: ProfileProps) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
 
   useEffect(() => {
     setAnchorEl(null) // Optional: to close menu board when route changed
@@ -49,14 +51,9 @@ export default function ProfileMenu() {
   return (
     <Stack position="relative">
       <IconButton color="secondary" title="Profile" onClick={handleInfoClick}>
-        <Badge
-          badgeContent={favBooks?.length}
-          overlap="circular"
-          variant="dot"
-          color="primary"
-        >
-          <PersonIcon fontSize="medium" />
-        </Badge>
+        <Avatar sx={{ width: 30, height: 30, bgcolor: deepOrange[500] }}>
+          {firstName?.slice(0, 1)}
+        </Avatar>
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem component={Link} to="/profile">
@@ -66,18 +63,11 @@ export default function ProfileMenu() {
           <Typography variant="h6">Profile</Typography>
         </MenuItem>
 
-        <MenuItem component={Link} to="/favorites">
+        <MenuItem component={Link} to="/admin">
           <ListItemIcon>
-            <Badge
-              badgeContent={favBooks?.length}
-              variant="dot"
-              overlap="circular"
-              color="primary"
-            >
-              <BookMarkIcon fontSize="small" />
-            </Badge>
+            <AdminPanelSettingsOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          <Typography variant="h6">My Lists</Typography>
+          <Typography variant="h6">Admin Panel</Typography>
         </MenuItem>
 
         <MenuItem component={Link} to="/book-add">
