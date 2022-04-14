@@ -34,7 +34,7 @@ function App() {
           <Route element={<OuterContainer />}>
             <Route path="/" element={<Home />} />
             <Route path="/book/:bookId" element={<BookInfo />} />
-            <Route path="/author/:authorName" element={<AuthorInfo />} />
+            <Route path="/author/:authorId" element={<AuthorInfo />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/profile" element={<Profile />} />
               <Route path="/favorites" element={<Favorite />} />

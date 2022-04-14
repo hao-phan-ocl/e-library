@@ -32,7 +32,11 @@ export default function CategoryFieldArray({
       spacing={2}
       direction={{ sm: 'row', xs: 'column' }}
     >
-      <Typography textAlign={{ sm: 'right', xs: 'left' }} width="40%">
+      <Typography
+        fontWeight="700"
+        textAlign={{ sm: 'right', xs: 'left' }}
+        width="40%"
+      >
         Categories
       </Typography>
       <Stack width="100%" alignItems="flex-start">

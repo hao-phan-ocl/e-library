@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import SearchBar from '../components/SearchBar/SearchBar'
 import { fetchBooks } from '../redux/fetchBooks/actions'
 import { RootState } from '../redux/rootReducer'
 import MainLayout from '../components/MainLayout.tsx/MainLayout'
@@ -14,10 +13,5 @@ export default function Home() {
     dispatch(fetchBooks())
   }, [dispatch])
 
-  return (
-    <>
-      <SearchBar />
-      <MainLayout books={books} />
-    </>
-  )
+  return <MainLayout books={books} />
 }

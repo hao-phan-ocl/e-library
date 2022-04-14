@@ -63,6 +63,8 @@ export default function BookInfo() {
           </Typography>
           {book?.authors.map((author, i) => (
             <Typography
+              component={Link}
+              to={`/author/${author._id}`}
               gutterBottom
               color="primary"
               variant="h6"
@@ -72,6 +74,9 @@ export default function BookInfo() {
                 textDecoration: 'underline',
                 cursor: 'pointer',
                 fontStyle: 'italic',
+                ':hover': {
+                  opacity: '.5',
+                },
               }}
             >
               {author.name}

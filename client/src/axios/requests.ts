@@ -13,6 +13,7 @@ type UrlType =
   | 'profile'
   | 'update'
   | 'create'
+  | 'author-id'
 
 type IdType = string
 

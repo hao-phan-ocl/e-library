@@ -22,7 +22,11 @@ export default function SingleField({
       spacing={2}
       direction={{ sm: 'row', xs: 'column' }}
     >
-      <Typography textAlign={{ sm: 'right', xs: 'left' }} width="40%">
+      <Typography
+        fontWeight="700"
+        textAlign={{ sm: 'right', xs: 'left' }}
+        width="40%"
+      >
         {title}
       </Typography>
       <Controller

@@ -62,7 +62,12 @@ export default function MainLayout({ books }: MainLayoutProps) {
                     gutterBottom
                     variant="h5"
                     fontSize={22}
-                    sx={{ textDecoration: 'underline' }}
+                    sx={{
+                      textDecoration: 'underline',
+                      ':hover': {
+                        opacity: '.5',
+                      },
+                    }}
                   >
                     {book.title}
                   </Typography>
@@ -70,11 +75,14 @@ export default function MainLayout({ books }: MainLayoutProps) {
                   {book.authors.map((author, i) => (
                     <Typography
                       component={Link}
-                      to={`/author/${author.name}`}
+                      to={`/author/${author._id}`}
                       key={i}
                       color="primary"
                       sx={{
                         fontStyle: 'italic',
+                        ':hover': {
+                          opacity: '.5',
+                        },
                       }}
                     >
                       {author.name}

@@ -10,7 +10,7 @@ import {
 } from '../../types/redux/author'
 import { Author } from '../../types/schema'
 
-export function searchAuthors(authorName: string) {
+export function searchAuthorByName(authorName: string) {
   return async (dispatch: Dispatch) => {
     try {
       const res = await instance.get(request('authors', 'name', authorName))

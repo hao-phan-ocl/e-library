@@ -48,8 +48,11 @@ export default function Nav() {
         {isAuthenticated ? (
           <>
             <IconButton component={Link} to="/favorites" title="Notification">
-              <Badge badgeContent={favBooks?.length} color="primary">
-                <NotificationsIcon color="secondary" fontSize="medium" />
+              <Badge badgeContent={favBooks?.length} color="info">
+                <NotificationsIcon
+                  color="secondary"
+                  sx={{ fontSize: '120%' }}
+                />
               </Badge>
             </IconButton>
             <ProfileMenu firstName={user?.firstName} />

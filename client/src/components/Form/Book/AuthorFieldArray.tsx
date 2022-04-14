@@ -20,7 +20,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 
 import { FormData } from './UpdateBookForm'
 import { openDialog } from '../../../redux/dialog/actions'
-import { searchAuthors } from '../../../redux/author/action'
+import { searchAuthorByName } from '../../../redux/author/action'
 import CheckAuthorDialog from '../../Dialog/CheckAuthorDialog'
 
 type AuthorForm = {
@@ -49,7 +49,11 @@ export default function AuthorFieldArray({
       spacing={2}
       direction={{ sm: 'row', xs: 'column' }}
     >
-      <Typography textAlign={{ sm: 'right', xs: 'left' }} width="40%">
+      <Typography
+        fontWeight="700"
+        textAlign={{ sm: 'right', xs: 'left' }}
+        width="40%"
+      >
         Authors
       </Typography>
       <Stack width="100%" alignItems="flex-start">
@@ -76,7 +80,7 @@ export default function AuthorFieldArray({
                 variant="outlined"
                 onClick={() => {
                   dispatch(openDialog(true))
-                  dispatch(searchAuthors(watch(`authors.${index}.author`)))
+                  dispatch(searchAuthorByName(watch(`authors.${index}.author`)))
                 }}
               >
                 Check
