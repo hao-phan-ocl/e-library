@@ -4,7 +4,7 @@ import { logout } from '../redux/auth/actions'
 import store from '../redux/store'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api/v1',
+  baseURL: process.env.REACT_APP_BACKEND,
 })
 
 // Using interceptors to dynamically set the header for each request
