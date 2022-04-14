@@ -79,7 +79,7 @@ export async function deleteBook(
   }
 }
 
-// GET /books/:bookId
+// GET /books/id/:bookId
 export async function findById(
   req: Request,
   res: Response,
@@ -96,14 +96,32 @@ export async function findById(
   }
 }
 
-// GET /books/:title
+// GET /books/title/:title
 export async function findByTitle(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
+    console.log(req.params.title)
     res.json(await BookService.findByTitle(req.params.title))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+// GET /books/author-id/:authorId
+export async function findByAuthorId(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    res.json(await BookService.findByAuthorId(req.params.authorId))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

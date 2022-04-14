@@ -8,19 +8,22 @@ import {
   deleteBook,
   createBook,
   findByTitle,
+  findByAuthorId,
 } from '../controllers/book'
 
 const router = express.Router()
 const authRequired = passport.authenticate('jwt', { session: false })
 
+// remember to add / before any url
 router.get('/all', findAll)
 router.get('/id/:bookId', findById)
 router.get('/title/:title', findByTitle)
+router.get('/author-id/:authorId', findByAuthorId)
 
-router.put('/update/:bookId', updateBook)
+router.put('/update/:bookId', authRequired, updateBook)
 
 router.delete('/:bookId', authRequired, deleteBook)
 
-router.post('/create', createBook)
+router.post('/create', authRequired, createBook)
 
 export default router

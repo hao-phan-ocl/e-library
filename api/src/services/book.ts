@@ -1,6 +1,7 @@
 import Author from '../models/Author'
 import { NotFoundError } from '../helpers/apiError'
 import Book, { BookDocument } from '../models/Book'
+import mongoose from 'mongoose'
 
 async function create(book: BookDocument) {
   const createdBook = await Book.create(book)
@@ -31,6 +32,20 @@ async function findById(bookId: string) {
 
 async function findByTitle(title: string) {
   const foundBook = await Book.find({ title: { $regex: title, $options: 'i' } })
+
+  if (!foundBook.length) {
+    throw new NotFoundError('Book not found')
+  }
+
+  return foundBook
+}
+
+async function findByAuthorId(authorId: string) {
+  const id = authorId as unknown as mongoose.Types.ObjectId
+  const foundBook = await Book.find({ authors: [id] }).populate(
+    'authors',
+    'name'
+  )
 
   if (!foundBook.length) {
     throw new NotFoundError('Book not found')
@@ -89,4 +104,5 @@ export default {
   deleteBook,
   updateBook,
   findByTitle,
+  findByAuthorId,
 }

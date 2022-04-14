@@ -19,7 +19,7 @@ async function findAll() {
 }
 
 async function findById(authorId: string) {
-  const foundAuthor = await Author.findById(authorId)
+  const foundAuthor = await Author.findById(authorId).populate('books')
 
   if (!foundAuthor) {
     throw new NotFoundError('Author not found')

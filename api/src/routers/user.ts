@@ -17,7 +17,7 @@ import {
 const router = express.Router()
 const authRequired = passport.authenticate('jwt', { session: false })
 
-router.get('/all', findAll)
+router.get('/all', authRequired, findAll)
 router.get('/id/:userId', authRequired, findById)
 router.get('/profile', authRequired, getProfile)
 

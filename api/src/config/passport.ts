@@ -23,7 +23,7 @@ const googleStrategy = new GoogleTokenStrategy(
   }
 )
 
-// JWT token for access to authorised pages
+// JWT token for access to authorized pages
 export const jwtStrategy = new JwtStrategy.Strategy(
   {
     secretOrKey: JWT_SECRET,
