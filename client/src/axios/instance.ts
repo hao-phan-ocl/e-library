@@ -3,8 +3,11 @@ import axios from 'axios'
 import { logout } from '../redux/auth/actions'
 import store from '../redux/store'
 
+const prod = process.env.NODE_ENV === 'production'
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND,
+  baseURL: prod
+    ? 'https://fs9-elibrary.herokuapp.com/api/v1'
+    : 'http://localhost5000/api/v1',
 })
 
 // Using interceptors to dynamically set the header for each request
