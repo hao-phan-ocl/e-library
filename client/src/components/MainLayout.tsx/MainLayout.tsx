@@ -65,7 +65,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
                     sx={{
                       textDecoration: 'underline',
                       ':hover': {
-                        opacity: '.5',
+                        color: 'rgb(233, 30, 99)',
                       },
                     }}
                   >
@@ -81,7 +81,7 @@ export default function MainLayout({ books }: MainLayoutProps) {
                       sx={{
                         fontStyle: 'italic',
                         ':hover': {
-                          opacity: '.5',
+                          color: 'rgb(233, 30, 99)',
                         },
                       }}
                     >

@@ -75,7 +75,7 @@ export default function BookInfo() {
                 cursor: 'pointer',
                 fontStyle: 'italic',
                 ':hover': {
-                  opacity: '.5',
+                  color: 'rgb(233, 30, 99)',
                 },
               }}
             >
