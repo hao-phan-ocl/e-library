@@ -22,7 +22,7 @@ router.get('/author-id/:authorId', findByAuthorId)
 
 router.put('/update/:bookId', authRequired, updateBook)
 
-router.delete('/:bookId', authRequired, deleteBook)
+router.delete('/delete/:bookId', authRequired, deleteBook)
 
 router.post('/create', authRequired, createBook)
 
