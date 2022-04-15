@@ -37,6 +37,7 @@ export default function DeleteBookDialog({ bookId }: DeleteBookProps) {
 
       if (res.status === 204) {
         navigate('/')
+        window.location.reload()
       }
       dispatch(openDialog(false))
     }
