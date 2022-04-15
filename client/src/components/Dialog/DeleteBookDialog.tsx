@@ -31,8 +31,9 @@ export default function DeleteBookDialog({ bookId }: DeleteBookProps) {
 
   async function handleDelete() {
     if (userId) {
-      //   dispatch(deleteUser(userId))
-      await instance.delete(request('books', 'delete', bookId))
+      const res = await instance.delete(request('books', 'delete', bookId))
+
+      // if (res.)
       dispatch(openDialog(false))
     }
   }

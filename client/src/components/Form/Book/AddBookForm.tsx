@@ -46,7 +46,8 @@ export default function AddBookForm() {
       authors: [{ author: '' }],
       language: '',
       year: undefined,
-      image: 'http://cdn.bakerpublishinggroup.com/covers/listing/missing.png',
+      image:
+        'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg',
     },
     resolver: yupResolver(schema),
   })

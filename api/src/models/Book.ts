@@ -28,7 +28,8 @@ export const bookSchema = new Schema(
     image: {
       type: String,
       required: true,
-      default: 'http://cdn.bakerpublishinggroup.com/covers/listing/missing.png',
+      default:
+        'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg',
     },
     readers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
