@@ -15,6 +15,7 @@ import { RootState } from '../../redux/rootReducer'
 import Transition from './Transition'
 import instance from '../../axios/instance'
 import { request } from '../../axios/requests'
+import { useNavigate } from 'react-router-dom'
 
 type DeleteBookProps = {
   bookId: string
@@ -22,6 +23,7 @@ type DeleteBookProps = {
 
 export default function DeleteBookDialog({ bookId }: DeleteBookProps) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const open = useSelector((state: RootState) => state.dialog.state)
   const userId = useSelector((state: RootState) => state.auth.user?._id)
 
@@ -33,7 +35,9 @@ export default function DeleteBookDialog({ bookId }: DeleteBookProps) {
     if (userId) {
       const res = await instance.delete(request('books', 'delete', bookId))
 
-      // if (res.)
+      if (res.status === 204) {
+        navigate('/')
+      }
       dispatch(openDialog(false))
     }
   }
