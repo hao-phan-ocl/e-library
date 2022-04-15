@@ -13,8 +13,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
 import Transition from './Transition'
+import instance from '../../axios/instance'
+import { request } from '../../axios/requests'
 
-export default function DeleteBookDialog() {
+type DeleteBookProps = {
+  bookId: string
+}
+
+export default function DeleteBookDialog({ bookId }: DeleteBookProps) {
   const dispatch = useDispatch()
   const open = useSelector((state: RootState) => state.dialog.state)
   const userId = useSelector((state: RootState) => state.auth.user?._id)
@@ -23,10 +29,10 @@ export default function DeleteBookDialog() {
     dispatch(openDialog(false))
   }
 
-  function handleDelete() {
+  async function handleDelete() {
     if (userId) {
       //   dispatch(deleteUser(userId))
-      console.log('book deleted')
+      await instance.delete(request('books', 'delete', bookId))
       dispatch(openDialog(false))
     }
   }

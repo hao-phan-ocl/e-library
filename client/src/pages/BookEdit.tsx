@@ -80,7 +80,7 @@ export default function BookEdit() {
               <Stack spacing={1}>
                 <Typography fontWeight={'800'}>Remove book</Typography>
                 <DeleteBtn text={'remove this book'} />
-                <DeleteBookDialog />
+                <DeleteBookDialog bookId={bookId as string} />
               </Stack>
             </Stack>
           </TabPanel>
