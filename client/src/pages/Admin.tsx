@@ -17,7 +17,7 @@ import { User } from '../types/schema'
 
 export default function Admin() {
   const [allUsers, setAllUsers] = useState<User[]>([])
-
+  console.log(allUsers)
   useEffect(() => {
     async function getAllUsers() {
       const res = await instance.get(request('users', 'all'))
@@ -30,7 +30,7 @@ export default function Admin() {
   return (
     <>
       <BackBtn text="User List" />
-      {allUsers ? (
+      {allUsers.length ? (
         <Stack gap={2}>
           {allUsers.map((user) => (
             <Accordion
