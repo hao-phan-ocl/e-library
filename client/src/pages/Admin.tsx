@@ -17,7 +17,7 @@ import { User } from '../types/schema'
 
 export default function Admin() {
   const [allUsers, setAllUsers] = useState<User[]>([])
-  console.log(allUsers)
+
   useEffect(() => {
     async function getAllUsers() {
       const res = await instance.get(request('users', 'all'))
