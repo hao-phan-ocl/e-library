@@ -8,20 +8,22 @@ import {
   Typography,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { useEffect, useState } from 'react'
 
 import BackBtn from '../components/Button/BackBtn'
-import { useEffect, useState } from 'react'
 import instance from '../axios/instance'
 import { request } from '../axios/requests'
 import { User } from '../types/schema'
 
 export default function Admin() {
   const [allUsers, setAllUsers] = useState<User[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function getAllUsers() {
       const res = await instance.get(request('users', 'all'))
       setAllUsers(res.data)
+      setLoading(false)
     }
 
     getAllUsers()
@@ -30,7 +32,11 @@ export default function Admin() {
   return (
     <>
       <BackBtn text="User List" />
-      {allUsers.length ? (
+      {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress />
+        </Box>
+      ) : (
         <Stack gap={2}>
           {allUsers.map((user) => (
             <Accordion
@@ -101,10 +107,6 @@ export default function Admin() {
             </Accordion>
           ))}
         </Stack>
-      ) : (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <CircularProgress />
-        </Box>
       )}
     </>
   )

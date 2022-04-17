@@ -8,12 +8,11 @@ import Loading from '../pages/Loading'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const books = useSelector((state: RootState) => state.books.books)
-  const isLoaded = useSelector((state: RootState) => state.books.loading)
+  const { books, loading } = useSelector((state: RootState) => state.books)
 
   useEffect(() => {
     dispatch(fetchBooks())
   }, [dispatch])
 
-  return <>{isLoaded ? <Loading /> : <MainLayout books={books} />}</>
+  return <>{loading ? <Loading /> : <MainLayout books={books} />}</>
 }
