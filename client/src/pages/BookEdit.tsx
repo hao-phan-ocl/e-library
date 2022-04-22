@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom'
 
 import BackBtn from '../components/Button/BackBtn'
 import DeleteBtn from '../components/Button/DeleteBtn'
-import DeleteBookDialog from '../components/Dialog/DeleteBookDialog'
 import UpdateBookForm from '../components/Form/Book/UpdateBookForm'
+import DeleteBookDialog from '../components/Dialog/DeleteBookDialog'
 import { fetchBook } from '../redux/fetchBook/actions'
 import { RootState } from '../redux/rootReducer'
 
