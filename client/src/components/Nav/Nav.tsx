@@ -1,7 +1,7 @@
 import { Badge, IconButton, Stack, Typography } from '@mui/material'
 import { useNavigate, Link } from 'react-router-dom'
-import NotificationsIcon from '@mui/icons-material/Notifications'
 import { useSelector } from 'react-redux'
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 import { RootState } from '../../redux/rootReducer'
 import ProfileMenu from './ProfileMenu'
