@@ -4,6 +4,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile.prod
+    image: haophan7/e-library_api:v1
     ports:
       - "5000:5000"
     depends_on:
@@ -19,6 +20,7 @@ services:
     build: 
       context: ./client
       dockerfile: Dockerfile.prod
+    image: haophan7/e-library_client:v1
     ports:
       - "3000:3000"
     depends_on:
