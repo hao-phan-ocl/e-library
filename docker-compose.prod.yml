@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: "mongo:latest"
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-volume:/data/db
+  client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+volumes:
+  mongo-volume:
