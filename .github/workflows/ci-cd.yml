@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: api
+        working-directory: ./api
     strategy:
       matrix:
         node-version: [18.x]
@@ -56,14 +56,14 @@ jobs:
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.0
         env:
-         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
   client:
     name: Client - Build, Deploy, Slack notify
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: client
+        working-directory: ./client
     strategy:
       matrix:
         node-version: [18.x]
