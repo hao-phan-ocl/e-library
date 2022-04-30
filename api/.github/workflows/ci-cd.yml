@@ -1,0 +1,56 @@
+name: e-library_api
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+    branches: [master, dev]
+
+  pull_request:
+    branches: [master, dev]
+
+jobs:
+  build:
+    name: Building, Deploy, Slack notify
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setup cache
+        uses: actions/cache@v3
+        with:
+        path: ~/.npm         
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install
+        run: npm ci
+
+      - name:                                                                                       
+        run: npm run lint                                                                  
+
+      - name: Building
+        run: npm run build --production
+      
+      - name: Deploying to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "e-library"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+
+      - name: Slack Notify
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
