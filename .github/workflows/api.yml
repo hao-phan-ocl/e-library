@@ -68,7 +68,7 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           
       - name: Push to Heroku
-        run: git subtree push --prefix api heroku master
+        run: git push heroku master
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.0
