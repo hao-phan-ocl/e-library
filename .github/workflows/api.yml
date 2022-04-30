@@ -28,6 +28,8 @@ jobs:
 
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup cache
         uses: actions/cache@v3
@@ -52,7 +54,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          remote_branch: master
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.0
