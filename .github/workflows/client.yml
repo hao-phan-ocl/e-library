@@ -50,6 +50,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          REACT_APP_BACKEND: ${{ secrets.REACT_APP_BACKEND }}
         run: netlify deploy --dir=build --prod
 
       - name: Slack Notify
