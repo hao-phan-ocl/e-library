@@ -28,8 +28,6 @@ jobs:
 
       - name: Checkout source code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Setup cache
         uses: actions/cache@v3
@@ -54,7 +52,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN  }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID  }}
         with:
-          args: deploy --dir=build --prod
+          args: deploy --dir=./build --prod
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.0
