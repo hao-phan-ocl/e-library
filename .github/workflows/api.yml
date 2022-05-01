@@ -46,8 +46,11 @@ jobs:
         run: npm run lint                                                                  
 
       - name: Building
-        run: npm run start
+        run: npm run build
       
+      - name: Starting
+        run: npm run start
+
       - name: Heroku login credentials
         run: |
           cat > ~/.netrc <<EOF
