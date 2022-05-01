@@ -48,6 +48,9 @@ jobs:
       - name: Building
         run: npm run build
 
+      - name: Starting
+        run: npm run start
+
       - name: Deploying to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
