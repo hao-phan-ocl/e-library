@@ -40,7 +40,7 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name:                                                                                       
+      - name: Linting                                                                                   
         run: npm run lint                                                                  
 
       - name: Building
