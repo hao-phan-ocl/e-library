@@ -30,7 +30,7 @@ export default function Nav() {
               textTransform: 'lowercase',
             }}
           >
-            Hello
+            e
           </Typography>
           <Typography
             color="secondary"
