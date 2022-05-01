@@ -46,13 +46,23 @@ jobs:
       - name: Building
         run: npm run build
 
-      - name: Deploying to Netlify                
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN  }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID  }}
+      # - name: Deploying to Netlify                
+      #   uses: netlify/actions/cli@master
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN  }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID  }}
+      #   with:
+      #     args: deploy --dir=./build --prod
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2.3
         with:
-          args: deploy --dir=./build --prod
+          publish-dir: './build'
+          production-branch: master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.0
