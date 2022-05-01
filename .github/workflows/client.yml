@@ -41,16 +41,16 @@ jobs:
         run: npm ci
 
       - name: Linting                                                                                   
-        run: npm run lint                                                                  
-
-      - name: Building
-        run: npm run build
+        run: npm run lint 
 
       - name: Create .env file
         run: |
           touch .env
           echo REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }} > .env
-          cat .env
+          cat .env                                                                 
+
+      - name: Building
+        run: npm run build
 
       - name: Deploy to Netlify
         env:
