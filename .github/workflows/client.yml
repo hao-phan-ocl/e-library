@@ -43,7 +43,7 @@ jobs:
       - name: Linting                                                                                   
         run: npm run lint 
 
-      - name: Create .env file
+      - name: Create .env file # github ignores .env file thus we need to create one for run build
         run: |
           touch .env
           echo REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }} > .env
