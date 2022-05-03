@@ -9,10 +9,6 @@ on:
   pull_request:
     branches: [master, dev]
 
-defaults:
-  run:
-    working-directory: api
-
 jobs:
   api:
     name: API - Build, Deploy, Slack notify
@@ -20,6 +16,9 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    defaults:
+      run:
+        working-directory: api
     steps:
       - name: Setup node
         uses: actions/setup-node@v3
