@@ -5,3 +5,14 @@
 # Docker
     docker pull haophan7/e-library_api:v1
     docker pull haophan7/e-library_client:v1
+
+# Tech stack
+* MERN stack
+* Typescript
+* Redux
+* Redux-thunk
+* Passport
+* Axios
+* Docker
+* Github actions
+* Material UI
