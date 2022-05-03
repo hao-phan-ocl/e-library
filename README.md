@@ -11,6 +11,7 @@
 * Typescript
 * Redux
 * Redux-thunk
+* React Hook Form
 * Passport
 * Axios
 * Docker
