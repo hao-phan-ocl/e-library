@@ -12,8 +12,8 @@
 * Redux
 * Redux-thunk
 * React Hook Form
-* Passport
 * Axios
+* Passport
 * Docker
 * Github actions
 * Material UI
