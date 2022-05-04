@@ -25,7 +25,7 @@ router.put('/update', authRequired, updateUser)
 router.put('/add-favorite', authRequired, addBook)
 router.put('/delete-favorite', authRequired, removeBook)
 
-router.delete('/delete', authRequired, deleteUser)
+router.delete('/delete/:userId', authRequired, deleteUser)
 
 router.post('/register', createUser)
 router.post('/login', loginUser)

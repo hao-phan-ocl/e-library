@@ -94,10 +94,10 @@ export function removeFavorite(bookId: string) {
 }
 
 // DELETE
-export function deleteUser() {
+export function deleteUser(userId: string) {
   return async (dispatch: Dispatch) => {
     try {
-      const res = await instance.delete(request('users', 'delete'))
+      const res = await instance.delete(request('users', 'delete', userId))
       if (res.status === 204) {
         dispatch(deleteSuccess())
       }

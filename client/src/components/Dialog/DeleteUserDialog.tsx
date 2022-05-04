@@ -18,15 +18,18 @@ import Transition from './Transition'
 export default function DeleteUserDialog() {
   const dispatch = useDispatch()
   const open = useSelector((state: RootState) => state.dialog.state)
+  const user = useSelector((state: RootState) => state.auth.user)
 
   function handleClose() {
     dispatch(openDialog(false))
   }
 
   function handleDelete() {
-    dispatch(deleteUser())
-    localStorage.removeItem('access_token')
-    window.location.reload()
+    if (user) {
+      dispatch(deleteUser(user._id))
+      localStorage.removeItem('access_token')
+      window.location.reload()
+    }
   }
 
   return (

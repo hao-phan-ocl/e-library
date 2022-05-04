@@ -132,8 +132,7 @@ export async function deleteUser(
   next: NextFunction
 ) {
   try {
-    const user = req.user as UserDocument
-    await UserService.deleteUser(user._id)
+    await UserService.deleteUser(req.params.userId)
     res.status(204).end()
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
