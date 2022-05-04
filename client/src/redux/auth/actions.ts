@@ -100,6 +100,7 @@ export function deleteUser(userId: string) {
       const res = await instance.delete(request('users', 'delete', userId))
       if (res.status === 204) {
         dispatch(deleteSuccess())
+        localStorage.removeItem('access_token') //prevent app to reload the deleted user via access_token
       }
     } catch (error) {
       dispatch(deleteFail(error as Error))

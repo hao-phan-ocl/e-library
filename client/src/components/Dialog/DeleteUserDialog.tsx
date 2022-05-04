@@ -27,8 +27,6 @@ export default function DeleteUserDialog() {
   function handleDelete() {
     if (user) {
       dispatch(deleteUser(user._id))
-      localStorage.removeItem('access_token')
-      window.location.reload()
     }
   }
 
