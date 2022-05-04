@@ -28,6 +28,7 @@ export default function DeleteUserDialog() {
     if (user) {
       dispatch(deleteUser(user._id))
     }
+    dispatch(openDialog(false))
   }
 
   return (
