@@ -1,8 +1,8 @@
 import { Box, Dialog } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { RootState } from '../../redux/rootReducer'
 import { openDialog } from '../../redux/dialog/actions'
+import { RootState } from '../../redux/rootReducer'
 import LoginTable from '../LoginTable/LoginTable'
 import Transition from './Transition'
 
