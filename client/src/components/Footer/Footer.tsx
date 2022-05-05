@@ -3,7 +3,7 @@ import { GitHub, LinkedIn } from '@mui/icons-material'
 
 export default function Footer() {
   return (
-    <Stack alignItems="center" gap="7px" p="50px 0">
+    <Stack alignItems="center" gap="7px" p="50px 0" mt="auto">
       <Stack flexDirection="row" alignItems="center" gap="5px">
         <Typography fontSize="20px">Developed by</Typography>
         <Typography fontSize="20px" fontWeight={600}>
