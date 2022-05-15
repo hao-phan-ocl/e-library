@@ -1,5 +1,5 @@
 import { Typography, Link, Stack } from '@mui/material'
-// import { GitHub, LinkedIn } from '@mui/icons-material'
+import { GitHub, LinkedIn } from '@mui/icons-material'
 
 export default function Footer() {
   return (
@@ -19,7 +19,7 @@ export default function Footer() {
           </Typography>
         </Link>
       </Stack>
-      {/* <Stack flexDirection="row" gap="5px">
+      <Stack flexDirection="row" gap="5px">
         <Link
           href="https://www.linkedin.com/in/hao-phan-06b628110/"
           target="_blank"
@@ -40,7 +40,7 @@ export default function Footer() {
             sx={{ fontSize: '35px', ':hover': { color: 'rgb(233, 30, 99)' } }}
           />
         </Link>
-      </Stack> */}
+      </Stack>
     </Stack>
   )
 }
