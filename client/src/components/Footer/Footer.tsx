@@ -12,7 +12,8 @@ export default function Footer() {
           target="_blank"
           rel="noreferrer"
           aria-label="Portfolio"
-          underline="hover"
+          underline="always"
+          sx={{ ':hover': { textDecoration: 'none' } }}
         >
           <Typography color="primary" fontSize="20px" fontWeight={600}>
             Hao Phan
