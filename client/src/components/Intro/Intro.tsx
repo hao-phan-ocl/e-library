@@ -21,7 +21,12 @@ export default function Intro() {
 
   return (
     <>
-      <Stack sx={{ background: '#fff8e1' }} spacing="10px" p="10px">
+      <Stack
+        sx={{ background: '#fff8e1' }}
+        spacing="10px"
+        p="10px"
+        border="2px solid #ffe9a4"
+      >
         <Typography paragraph mb="5px">
           <Typography fontWeight="800" component="span">
             {'Welcome to '}
