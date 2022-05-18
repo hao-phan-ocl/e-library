@@ -5,6 +5,7 @@ import { fetchBooks } from '../redux/fetchBooks/actions'
 import { RootState } from '../redux/rootReducer'
 import MainLayout from '../components/MainLayout.tsx/MainLayout'
 import Loading from '../pages/Loading'
+import Intro from '../components/Intro/Intro'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -14,5 +15,16 @@ export default function Home() {
     dispatch(fetchBooks())
   }, [dispatch])
 
-  return <>{loading ? <Loading /> : <MainLayout books={books} />}</>
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Intro />
+          <MainLayout books={books} />
+        </>
+      )}
+    </>
+  )
 }
