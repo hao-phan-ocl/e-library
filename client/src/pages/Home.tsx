@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchBooks } from '../redux/fetchBooks/actions'
 import { RootState } from '../redux/rootReducer'
-import Loading from '../pages/Loading'
+import LoadingPage from './LoadingPage'
 import Intro from '../components/Intro'
 import MyGrid from '../components/MyGrid'
 
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       {loading ? (
-        <Loading />
+        <LoadingPage />
       ) : (
         <>
           <Intro />

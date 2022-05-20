@@ -30,7 +30,13 @@ export default function MyGrid({ books }: MyGridProps) {
       justifyItems="center"
     >
       {books.map((book) => (
-        <Grid key={book._id} item component={Link} to={`/book/${book._id}`}>
+        <Grid
+          key={book._id}
+          item
+          component={Link}
+          to={`/book/${book._id}`}
+          title={book.title}
+        >
           <Item
             sx={{
               cursor: 'pointer',
