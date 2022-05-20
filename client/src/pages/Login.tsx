@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import LoginTable from '../components/LoginTable/LoginTable'
+import LoginTable from '../components/LoginTable'
 import login from '../images/login.jpg'
 import { RootState } from '../redux/rootReducer'
 

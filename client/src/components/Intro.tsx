@@ -2,9 +2,9 @@ import { Stack, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { openDialog } from '../../redux/dialog/actions'
-import { RootState } from '../../redux/rootReducer'
-import LoginDialog from '../Dialog/LoginDialog'
+import { openDialog } from '../redux/dialog/actions'
+import { RootState } from '../redux/rootReducer'
+import LoginDialog from './Dialog/LoginDialog'
 
 export default function Intro() {
   const dispatch = useDispatch()

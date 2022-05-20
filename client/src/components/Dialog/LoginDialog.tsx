@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { openDialog } from '../../redux/dialog/actions'
 import { RootState } from '../../redux/rootReducer'
-import LoginTable from '../LoginTable/LoginTable'
+import LoginTable from '../LoginTable'
 import Transition from './Transition'
 
 export default function LoginDialog() {
