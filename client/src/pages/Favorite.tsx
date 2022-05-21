@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 
+import { RootState } from '../redux/rootReducer'
 import BackBtn from '../components/Button/BackBtn'
 import MainLayout from '../components/MainLayout'
-import { RootState } from '../redux/rootReducer'
 
 export default function Favorite() {
   const favBooks = useSelector((state: RootState) => state.auth.user?.bookLists)
