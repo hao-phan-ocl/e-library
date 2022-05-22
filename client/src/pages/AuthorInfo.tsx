@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 
 import instance from '../axios/instance'
 import { request } from '../axios/requests'
+import { Author, Book } from '../types/schema'
 import BackBtn from '../components/Button/BackBtn'
 import MainLayout from '../components/MainLayout'
-import { Author, Book } from '../types/schema'
 
 export default function AuthorInfo() {
   const { authorId } = useParams()
